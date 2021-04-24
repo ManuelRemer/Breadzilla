@@ -15,10 +15,10 @@ so that (benefit)
 ## Description (Text, Scribble, Wireframe, Design)
 
 ## Acceptance criteria
-[ ] (functional descriptions)
+- [ ] (functional descriptions)
 
 ## Tasks
-[ ](todos for the team)
+- [ ] (todos for the team)
 
 ## Size
 (small, medium, large)
