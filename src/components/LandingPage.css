@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+
+.landing-page {
+  background-color: var(--color-sand);
+}
+.landing-header {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.landing-header-h1 {
+  font-family: "Titan One", cursive;
+}

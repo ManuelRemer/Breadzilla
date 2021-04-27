@@ -1,12 +1,16 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
+
           <Route exact path="/generator"></Route>
           <Route exact path="/recipe"></Route>
           <Route exact path="/saved-recipe"></Route>
