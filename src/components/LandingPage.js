@@ -21,7 +21,7 @@ export default function LandingPage() {
         </div>
         <nav className="landing-nav">
           <NavLink to="/generator">
-            <StandardButton name="Bread Generator" />
+            <StandardButton name="Bread Generator" class="standard-button" />
           </NavLink>
           <NavLink to="/collection">
             <StandardButton name="Browse your recipes" />
