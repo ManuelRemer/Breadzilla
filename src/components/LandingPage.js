@@ -12,15 +12,17 @@ export default function LandingPage() {
         src={LandingBread}
         className="landing-image"
       />
-      <div className="landing-text">
-        <p>Design your own</p>
-        <p className="landing-text-highlight">Bread</p>
-        <p>with the ingrediants</p> <p>you want</p>
+      <div className="landing-rest">
+        <div className="landing-text">
+          <p>Design your own</p>
+          <p className="landing-text-highlight">Bread</p>
+          <p>with the ingrediants</p> <p>you want</p>
+        </div>
+        <nav className="landing-nav">
+          <StandardButton name="Bread Generator" />
+          <StandardButton name="Browse your recipes" />
+        </nav>
       </div>
-      <nav className="landing-nav">
-        <StandardButton name="Bread Generator" />
-        <StandardButton name="Browse your recipes" />
-      </nav>
     </div>
   );
 }
