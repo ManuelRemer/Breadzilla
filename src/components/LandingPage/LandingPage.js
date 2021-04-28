@@ -1,7 +1,7 @@
 import "./LandingPage.css";
 
-import StandardButton from "./StandardButton";
-import LandingBreadSrc from "../images/LandingBread.jpg";
+import StandardButton from "../StandardButton";
+import LandingBreadSrc from "../../images/LandingBread.jpg";
 export default function LandingPage() {
   return (
     <div className="landing-page">
