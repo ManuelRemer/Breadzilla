@@ -1,0 +1,14 @@
+.standard-button {
+  margin: 5px;
+  /* border: 3px solid var(--color-fonts); */
+  border-radius: 50px;
+  box-shadow: 0.5px 1px 8px -1px var(--color-fonts);
+  min-width: min-content;
+  width: 75%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-fonts);
+  color: var(--color-sand);
+}
