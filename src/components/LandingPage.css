@@ -1,6 +1,9 @@
 .landing-page {
   background-color: var(--color-sand);
-  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 .landing-header {
   height: 100px;
@@ -17,6 +20,7 @@
 .landing-image {
   width: 375px;
   height: auto;
+  align-self: center;
 }
 
 .landing-text {
@@ -34,4 +38,6 @@
 .landing-nav {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-self: center;
 }
