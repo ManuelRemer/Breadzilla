@@ -1,6 +1,6 @@
 import "./LandingPage.css";
 import StandardButton from "./StandardButton";
-import LandingBread from "../images/LandingBread.jpg";
+import LandingBreadSrc from "../images/LandingBread.jpg";
 export default function LandingPage() {
   return (
     <div className="landing-page">
@@ -9,14 +9,14 @@ export default function LandingPage() {
       </header>
       <img
         alt="crispy fresh bread"
-        src={LandingBread}
+        src={LandingBreadSrc}
         className="landing-image"
       />
       <div className="landing-rest">
         <div className="landing-text">
           <p>Design your own</p>
           <p className="landing-text-highlight">Bread</p>
-          <p>with the ingrediants</p> <p>you want</p>
+          <p>with the ingredients</p> <p>you want</p>
         </div>
         <nav className="landing-nav">
           <StandardButton name="Bread Generator" />

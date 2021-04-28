@@ -1,14 +1,14 @@
 .landing-page {
   background-color: var(--color-sand);
   display: grid;
-  grid-template-rows: [header]15vh [image]35vh [rest]50vh;
+  grid-template-rows: 15vh 35vh 50vh auto;
   grid-template-columns: 1fr;
   justify-content: center;
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
 }
 .landing-header {
-  grid-row: [header];
+  grid-row: 1/ 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,14 +20,14 @@
 }
 
 .landing-image {
-  grid-row: [image];
+  grid-row: 2 / 3;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .landing.rest {
-  grid-row: [rest];
+  grid-row: 3 / 4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@
 }
 
 .landing-text {
-  padding: 1.2em 0 1.2em 0;
+  padding: 5vh 0 5vh 0;
   font-family: "Work sans";
   font-size: 24px;
   color: var(--color-fonts);
