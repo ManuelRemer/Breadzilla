@@ -1,18 +1,33 @@
+import { useState } from "react";
 import SelectionButton from "./SelectionButton";
-// import { useState } from "react";
-
-let flours = [
-  { name: "Wheat Flour 550", style: "unselected" },
-  { name: "Wholemeal Wheat Flour", style: "unselected" },
-  { name: "Wheat Spelt 550", style: "unselected" },
-  { name: "Wholemeal Spelt Flour", style: "unselected" },
-  { name: "Rye Flour 1150", style: "unselected" },
-  { name: "Wholemeal Rye Flour", style: "unselected" },
-];
-
 export default function FlourSelection() {
+  const initialFlours = [
+    { name: "Wheat Flour 550", status: false },
+    { name: "Wholemeal Wheat Flour", status: false },
+    { name: "Wheat Spelt 550", status: false },
+    { name: "Wholemeal Spelt Flour", status: false },
+    { name: "Rye Flour 1150", status: false },
+    { name: "Wholemeal Rye Flour", status: false },
+  ];
+  const [flours, setFlours] = useState(initialFlours);
+
+  console.log(flours);
+
+  function handleSelectionButton(name) {
+    const updateFlours = flours.map((flour) =>
+      flour.name === name ? { ...flour, status: !flour.status } : flour
+    );
+
+    setFlours(updateFlours);
+  }
+
   let selection = flours.map((flour) => (
-    <SelectionButton name={flour.name} key={flour.name} />
+    <SelectionButton
+      name={flour.name}
+      key={flour.name}
+      onClick={handleSelectionButton}
+      style={flour.status ? "selected" : "unselected"}
+    />
   ));
   return selection;
 }

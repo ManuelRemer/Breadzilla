@@ -1,18 +1,16 @@
-import { useState } from "react";
 import "./SelectionButton.css";
-export default function SelectionButton({ name }) {
-  const [status, setStatus] = useState("unselected");
-
-  function handleSelectionButton() {
-    if (status === "unselected") {
-      setStatus("selected");
-    } else {
-      setStatus("unselected");
-    }
+export default function SelectionButton({ name, onClick, style }) {
+  function handleSelectionButton(event) {
+    onClick(event.target.name);
   }
 
   return (
-    <button type="button" className={status} onClick={handleSelectionButton}>
+    <button
+      type="button"
+      className={style}
+      onClick={handleSelectionButton}
+      name={name}
+    >
       {name}
     </button>
   );

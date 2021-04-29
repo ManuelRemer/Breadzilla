@@ -1,35 +1,35 @@
 .selected {
   font-family: "Work sans";
+  font-size: 17px;
   margin: 5px;
   border: solid 3px var(--color-fonts);
   border-radius: 50px;
-
   min-width: min-content;
-  width: 120%;
+  width: 80%;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--color-fonts);
   color: var(--color-sand);
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  /* -webkit-appearance: none;
+  -moz-appearance: none; */
 }
 
 .unselected {
   font-family: "Work sans";
+  font-size: 17px;
   margin: 5px;
   border: solid 3px var(--color-fonts);
   border-radius: 50px;
-
   min-width: min-content;
-  width: 120%;
+  width: 80%;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background-color: var(--color-rose);
   color: var(--color-fonts);
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  /* -webkit-appearance: none;
+  -moz-appearance: none; */
 }

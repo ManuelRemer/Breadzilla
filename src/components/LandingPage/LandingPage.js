@@ -20,8 +20,16 @@ export default function LandingPage() {
           <p>with the ingredients</p> <p>you want</p>
         </div>
         <nav className="landing-nav">
-          <StandardButton name="Bread Generator" route="/generator" />
-          <StandardButton name="Browse your recipes" route="/collection" />
+          <StandardButton
+            name="Bread Generator"
+            route="/generator"
+            look="standard-button"
+          />
+          <StandardButton
+            name="Browse your recipes"
+            route="/collection"
+            look="standard-button"
+          />
         </nav>
       </div>
     </div>
