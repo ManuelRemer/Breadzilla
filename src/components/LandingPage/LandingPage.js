@@ -1,6 +1,6 @@
 import "./LandingPage.css";
 
-import StandardButton from "../StandardButton";
+import RoutingButton from "../RoutingButton";
 import LandingBreadSrc from "../../images/LandingBread.jpg";
 export default function LandingPage() {
   return (
@@ -20,12 +20,12 @@ export default function LandingPage() {
           <p>with the ingredients</p> <p>you want</p>
         </div>
         <nav className="landing-nav">
-          <StandardButton
+          <RoutingButton
             name="Bread Generator"
             route="/generator"
             look="standard-button"
           />
-          <StandardButton
+          <RoutingButton
             name="Browse your recipes"
             route="/collection"
             look="standard-button"

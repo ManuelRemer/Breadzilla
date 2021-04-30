@@ -1,5 +1,5 @@
 import FlourSelectionButtons from "./FlourSelectionButtons";
-import StandardButton from "../StandardButton";
+import StandardButton from "../RoutingButton";
 export default function FlourSelection() {
   return (
     <div className="generator-select">
