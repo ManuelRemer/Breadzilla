@@ -1,0 +1,11 @@
+.generator-ratio {
+  background-color: var(--color-rose);
+  display: grid;
+  grid-template-rows: 180px auto 100px;
+  height: 100vh;
+}
+
+.generator-select-header {
+  grid-row: 1 / 2;
+  text-align: center;
+}

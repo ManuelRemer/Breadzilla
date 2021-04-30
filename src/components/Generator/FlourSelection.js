@@ -1,5 +1,6 @@
 import FlourSelectionButtons from "./FlourSelectionButtons";
-import StandardButton from "../RoutingButton";
+import ScrollButton from "../ScrollButton";
+import "./FlourSelection.css";
 export default function FlourSelection() {
   return (
     <div className="generator-select">
@@ -18,9 +19,10 @@ export default function FlourSelection() {
       <div className="generator-select-selection">
         <FlourSelectionButtons />
       </div>
-      <footer className="generator-select-footer">
-        <StandardButton name="%" look="button-round" />
-      </footer>
+
+      <nav className="generator-select-scroll">
+        <ScrollButton name="%" look="scrollbutton" />
+      </nav>
     </div>
   );
 }

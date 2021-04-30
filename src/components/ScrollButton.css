@@ -1,17 +1,18 @@
-.standard-button {
+.scrollbutton {
   font-family: "Work sans";
+  font-family: "Titan One", cursive;
+  font-size: 24px;
   margin: 5px;
   border: none;
   border-radius: 50px;
   box-shadow: 0.5px 1px 8px -1px var(--color-fonts);
-  min-width: min-content;
-  width: 120%;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--color-fonts);
-  color: var(--color-sand);
+  color: var(--color-rose);
   -webkit-appearance: none;
   -moz-appearance: none;
 }

@@ -1,11 +1,11 @@
 import FlourSelection from "./FlourSelection";
-
-import "./FlourSelection.css";
+import FlourRatio from "./FlourRatio";
 
 export default function Generator() {
   return (
     <div>
       <FlourSelection />
+      <FlourRatio />
     </div>
   );
 }
