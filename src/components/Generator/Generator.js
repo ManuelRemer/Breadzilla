@@ -1,6 +1,5 @@
 import FlourSelection from "./FlourSelection";
 import StandardButton from "../StandardButton";
-//import { useRef } from "react";
 import "./FlourSelection.css";
 
 export default function Generator() {
