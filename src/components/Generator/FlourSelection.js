@@ -1,33 +1,26 @@
-import { useState } from "react";
-import SelectionButton from "./SelectionButton";
+import FlourSelectionButtons from "./FlourSelectionButtons";
+import StandardButton from "../StandardButton";
 export default function FlourSelection() {
-  const initialFlours = [
-    { name: "Wheat Flour 550", status: false },
-    { name: "Wholemeal Wheat Flour", status: false },
-    { name: "Wheat Spelt 550", status: false },
-    { name: "Wholemeal Spelt Flour", status: false },
-    { name: "Rye Flour 1150", status: false },
-    { name: "Wholemeal Rye Flour", status: false },
-  ];
-  const [flours, setFlours] = useState(initialFlours);
-
-  console.log(flours);
-
-  function handleSelectionButton(name) {
-    const updateFlours = flours.map((flour) =>
-      flour.name === name ? { ...flour, status: !flour.status } : flour
-    );
-
-    setFlours(updateFlours);
-  }
-
-  let selection = flours.map((flour) => (
-    <SelectionButton
-      name={flour.name}
-      key={flour.name}
-      onClick={handleSelectionButton}
-      style={flour.status ? "selected" : "unselected"}
-    />
-  ));
-  return selection;
+  return (
+    <div className="generator-select">
+      <header className="generator-select-header">
+        <h1 className="generator-select-header-headline">
+          <p>
+            Which
+            <span className="generator-select-header-headline-highlight">
+              {" "}
+              Flours{" "}
+            </span>
+          </p>
+          <p>do you want to use?</p>
+        </h1>{" "}
+      </header>
+      <div className="generator-select-selection">
+        <FlourSelectionButtons />
+      </div>
+      <footer className="generator-select-footer">
+        <StandardButton name="%" look="button-round" />
+      </footer>
+    </div>
+  );
 }
