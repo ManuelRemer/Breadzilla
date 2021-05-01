@@ -1,0 +1,45 @@
+.button {
+  height: 50px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10em;
+  cursor: pointer;
+}
+.button--xlarge {
+  width: 235px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 18px;
+}
+.button--large {
+  width: 210px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 18px;
+}
+
+.button--small {
+  width: 50px;
+  font-family: "Titan One", cursive;
+  font-size: 24px;
+}
+
+.button--small-smallfont {
+  width: 50px;
+  font-family: "Titan One", cursive;
+  font-size: 10px;
+}
+
+.routing-button {
+  border: none;
+  box-shadow: 0.5px 1px 8px -1px var(--color-fonts);
+  background-color: var(--color-fonts);
+  color: var(--color-sand);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-button {
+  border: solid var(--color-fonts) 3px;
+  color: var(--color-fonts);
+}
