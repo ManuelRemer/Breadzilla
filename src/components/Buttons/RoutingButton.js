@@ -13,6 +13,7 @@ export default function RoutingButton({ navigation, label, route, size }) {
       type="button"
       onClick={handleClick}
       className={["button", `button--${size}`, mode].join(" ")}
+      route={route}
     >
       {label}
     </button>
