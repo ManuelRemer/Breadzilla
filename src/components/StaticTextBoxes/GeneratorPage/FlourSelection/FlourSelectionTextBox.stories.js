@@ -1,7 +1,7 @@
 import FlourSelectionTextBox from "./FlourSelectionTextBox";
 
 export default {
-  title: "Textboxes/FlourSelectionTextBox",
+  title: "TextBoxes/FlourSelectionTextBox",
   component: FlourSelectionTextBox,
 };
 

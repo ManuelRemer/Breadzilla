@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SelectionButton from "./SelectionButton";
+import Button from "../../../Buttons/Button";
 export default function FlourSelectionButtons() {
   const initialFlours = [
     { name: "Wheat Flour 550", status: false },
@@ -13,7 +13,7 @@ export default function FlourSelectionButtons() {
 
   console.log(flours);
 
-  function handleSelectionButton(name) {
+  function handleSelectButton(name) {
     const updateFlours = flours.map((flour) =>
       flour.name === name ? { ...flour, status: !flour.status } : flour
     );
@@ -22,11 +22,12 @@ export default function FlourSelectionButtons() {
   }
 
   let selection = flours.map((flour) => (
-    <SelectionButton
-      name={flour.name}
+    <Button
+      label={flour.name}
       key={flour.name}
-      onClick={handleSelectionButton}
+      onSelect={handleSelectButton}
       style={flour.status ? "selected" : "unselected"}
+      size="xlarge"
     />
   ));
   return selection;

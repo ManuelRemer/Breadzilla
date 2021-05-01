@@ -1,26 +1,37 @@
-import "./RoutingButton.css";
+import "./Button.css";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
-export default function RoutingButton({ navigation, label, route, size }) {
-  const mode = navigation ? "routing-button" : "select-button";
-
-  let history = useHistory();
-  function handleClick() {
-    history.push(`${route}`);
+//import { useHistory } from "react-router-dom";
+export default function Button({
+  onSelect,
+  navigation,
+  label,
+  route,
+  size,
+  style,
+}) {
+  const mode = navigation ? "routing-button" : `select-button-${style}`;
+  function handleSelectButton(event) {
+    onSelect(event.target.label);
   }
+
+  // let history = useHistory();
+  // function handleClick() {
+  //   history.push(`${route}`);
+  //}
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={handleSelectButton}
       className={["button", `button--${size}`, mode].join(" ")}
       route={route}
+      label={label}
     >
       {label}
     </button>
   );
 }
 
-RoutingButton.propTypes = {
+Button.propTypes = {
   /**
    * Is this the principal call to action on the page?
    */
@@ -43,7 +54,7 @@ RoutingButton.propTypes = {
   onClick: PropTypes.func,
 };
 
-RoutingButton.defaultProps = {
+Button.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: "large",
