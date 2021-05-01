@@ -1,7 +1,7 @@
 import "./LandingPage.css";
-import { NavLink } from "react-router-dom";
-import StandardButton from "./StandardButton";
-import LandingBreadSrc from "../images/LandingBread.jpg";
+
+import RoutingButton from "../RoutingButton";
+import LandingBreadSrc from "../../images/LandingBread.jpg";
 export default function LandingPage() {
   return (
     <div className="landing-page">
@@ -20,12 +20,16 @@ export default function LandingPage() {
           <p>with the ingredients</p> <p>you want</p>
         </div>
         <nav className="landing-nav">
-          <NavLink to="/generator">
-            <StandardButton name="Bread Generator" />
-          </NavLink>
-          <NavLink to="/collection">
-            <StandardButton name="Browse your recipes" />
-          </NavLink>
+          <RoutingButton
+            name="Bread Generator"
+            route="/generator"
+            look="standard-button"
+          />
+          <RoutingButton
+            name="Browse your recipes"
+            route="/collection"
+            look="standard-button"
+          />
         </nav>
       </div>
     </div>

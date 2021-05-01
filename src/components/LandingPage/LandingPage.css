@@ -2,10 +2,7 @@
   background-color: var(--color-sand);
   display: grid;
   grid-template-rows: 15vh 35vh 50vh auto;
-  grid-template-columns: 1fr;
-
   height: 100vh;
-  /* width: 100vw; */
 }
 .landing-header {
   grid-row: 1/ 2;
