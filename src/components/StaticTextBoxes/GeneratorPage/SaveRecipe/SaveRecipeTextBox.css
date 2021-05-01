@@ -1,0 +1,16 @@
+.save-recipe-textbox {
+  padding: 2vh 0 5vh 0;
+
+  font-family: "Work sans";
+  font-size: 17px;
+  color: var(--color-fonts);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.save-recipe-textbox-highlight {
+  font-family: "Titan One", cursive;
+  font-size: 24px;
+  margin-bottom: 0.5em;
+}
