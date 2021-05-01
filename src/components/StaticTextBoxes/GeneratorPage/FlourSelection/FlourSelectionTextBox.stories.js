@@ -8,7 +8,4 @@ export default {
 const Template = (args) => <FlourSelectionTextBox {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Button",
-};
+Primary.args = {};
