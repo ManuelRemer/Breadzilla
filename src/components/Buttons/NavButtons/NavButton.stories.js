@@ -1,11 +1,11 @@
-import RoutingButton from "./RoutingButton";
+import NavButton from "./NavButton";
 
 export default {
-  title: "Buttons/RoutingButton",
-  component: RoutingButton,
+  title: "NavButtons/NavButton",
+  component: NavButton,
 };
 
-const Template = (args) => <RoutingButton {...args} />;
+const Template = (args) => <NavButton {...args} />;
 
 export const ToGenerator = Template.bind({});
 ToGenerator.args = {

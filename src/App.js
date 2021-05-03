@@ -17,7 +17,9 @@ function App() {
           </Route>
 
           <Route exact path="/recipe"></Route>
+
           <Route exact path="/saved-recipe"></Route>
+
           <Route exact path="/collection"></Route>
         </Switch>
       </div>
