@@ -1,0 +1,12 @@
+.name-recipe-input {
+  width: 250px;
+  height: 30px;
+  border: none;
+  border-radius: 0.5em;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-inputs);
+}
+::-moz-placeholder {
+  color: var(--color-fonts);
+  text-align: center;
+}
