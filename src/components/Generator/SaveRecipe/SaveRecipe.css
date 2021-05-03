@@ -1,0 +1,24 @@
+.save-recipe {
+  height: 100vh;
+  background-color: var(--color-green);
+  display: grid;
+  grid-template-rows: 40vh 20vh 35vh;
+  align-items: center;
+  justify-content: center;
+}
+.save-recipe-name {
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.save-recipe-ingredients {
+  grid-row: 2 / 3;
+  align-self: center;
+  color: var(--color-fonts);
+}
+.save-recipe--buttons {
+  grid-row: 3 / 4;
+}
