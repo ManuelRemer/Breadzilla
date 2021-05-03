@@ -1,11 +1,11 @@
-import FlourSelectionButtons from "./FlourSelectionButtons";
+// import FlourSelectionButtons from "./FlourSelectionButtons";
 
-export default {
-  title: "Selection/FlourSelection",
-  component: FlourSelectionButtons,
-};
+// export default {
+//   title: "Selection/FlourSelection",
+//   component: FlourSelectionButtons,
+// };
 
-const Template = (args) => <FlourSelectionButtons {...args} />;
+// const Template = (args) => <FlourSelectionButtons {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {};
+// export const Primary = Template.bind({});
+// Primary.args = {};

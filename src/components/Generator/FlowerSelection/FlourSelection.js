@@ -1,18 +1,20 @@
 import FlourSelectionButtons from "./FlowerSelectionButtons.js/FlourSelectionButtons";
 import FlourSelectionTextBox from "../../StaticTextBoxes/GeneratorPage/FlourSelection/FlourSelectionTextBox";
-// import ScrollButton from "../ScrollButton";
+import NavButton from "../../Buttons/NavButtons/NavButton";
 import "./FlourSelection.css";
-export default function FlourSelection() {
+import { Link } from "react-scroll";
+
+export default function FlourSelection({ onClick, flours }) {
   return (
     <div className="generator-select">
       <FlourSelectionTextBox />
       <div className="generator-select-selection">
-        <FlourSelectionButtons />
+        <FlourSelectionButtons onClick={onClick} flours={flours} />
       </div>
 
-      <nav className="generator-select-scroll">
-        {/* <ScrollButton name="%" look="scrollbutton" /> */}
-      </nav>
+      <Link className="generator-select-scroll" to="ratio" smooth={true}>
+        <NavButton label="%" size="small" />
+      </Link>
     </div>
   );
 }

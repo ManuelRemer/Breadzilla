@@ -1,33 +1,27 @@
 .generator-select {
   background-color: var(--color-rose);
   display: grid;
-  grid-template-rows: 180px auto 100px;
+  grid-template-rows: 200px auto 100px;
   height: 100vh;
+  /* align-items: center; */
 }
 .generator-select-header {
   grid-row: 1 / 2;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .generator-select-selection {
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.generator-select-header-headline {
-  margin: 50px 40px;
-  font-family: "Work sans";
-  font-size: 24px;
-  color: var(--color-fonts);
-}
-
-.generator-select-header-headline-highlight {
-  font-family: "Titan One", cursive;
-  font-size: 24px;
+  justify-content: center;
 }
 
 .generator-select-scroll {
   grid-row: 3 / 4;
-  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

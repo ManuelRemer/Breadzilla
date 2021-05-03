@@ -1,41 +1,31 @@
-import "./Button.css";
+import "./NavButton.css";
 import PropTypes from "prop-types";
-//import { useHistory } from "react-router-dom";
-export default function Button({
-  onSelect,
-  navigation,
-  label,
-  route,
-  size,
-  style,
-}) {
-  const mode = navigation ? "routing-button" : `select-button-${style}`;
-  function handleSelectButton(event) {
-    onSelect(event.target.label);
+
+export default function NavButton({ label, route, size, onClick }) {
+  function handleClick(event) {
+    event.preventDefault();
+    onClick(route);
+    console.log(route);
   }
 
-  // let history = useHistory();
-  // function handleClick() {
-  //   history.push(`${route}`);
-  //}
   return (
     <button
       type="button"
-      onClick={handleSelectButton}
-      className={["button", `button--${size}`, mode].join(" ")}
+      className={["button", `button--${size}`, "routing-button"].join(" ")}
       route={route}
       label={label}
+      onClick={size !== "small" ? handleClick : ""}
     >
       {label}
     </button>
   );
 }
 
-Button.propTypes = {
+NavButton.propTypes = {
   /**
    * Is this the principal call to action on the page?
    */
-  navigation: PropTypes.bool,
+  // navigation: PropTypes.bool,
   /**
    * What background color to use
    */
@@ -54,7 +44,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
 };
 
-Button.defaultProps = {
+NavButton.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: "large",

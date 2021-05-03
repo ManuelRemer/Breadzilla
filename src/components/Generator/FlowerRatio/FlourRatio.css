@@ -1,0 +1,20 @@
+.generator-ratio {
+  background-color: var(--color-rose);
+  display: grid;
+  grid-template-rows: auto 70vh auto;
+  height: 100vh;
+}
+
+.generator-ratio-textbox {
+  grid-row: 1 / 2;
+  text-align: center;
+}
+.generator-ratio-inputset {
+  grid-row: 2 / 3;
+}
+.generator-ratio-next {
+  grid-row: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

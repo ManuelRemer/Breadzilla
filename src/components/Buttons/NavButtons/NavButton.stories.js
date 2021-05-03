@@ -1,11 +1,11 @@
-import Button from "./Button";
+import NavButton from "./NavButton";
 
 export default {
-  title: "Buttons/Button",
-  component: Button,
+  title: "NavButtons/NavButton",
+  component: NavButton,
 };
 
-const Template = (args) => <Button {...args} />;
+const Template = (args) => <NavButton {...args} />;
 
 export const ToGenerator = Template.bind({});
 ToGenerator.args = {

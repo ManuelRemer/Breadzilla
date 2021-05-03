@@ -1,0 +1,34 @@
+.flour-ratio-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: min-content;
+}
+
+.flour-ratio-input--label {
+  font-size: 24px;
+  color: var(--color-fonts);
+  margin: 0.5em 0 0.3em 0;
+}
+
+.flour-ratio-input--span {
+  margin-left: 0.5em;
+  font-family: "Titan One", cursive;
+  font-size: 40px;
+  color: var(--color-fonts);
+}
+
+.flour-ratio-input--input {
+  height: 60px;
+  width: 125px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-sand);
+  box-shadow: 0.5px 1px 8px -1px var(--color-fonts);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
