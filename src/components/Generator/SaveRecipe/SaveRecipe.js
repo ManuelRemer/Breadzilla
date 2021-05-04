@@ -1,10 +1,10 @@
 import "./SaveRecipe.css";
 import SaveRecipeTextBox from "../../StaticTextBoxes/GeneratorPage/SaveRecipe/SaveRecipeTextBox";
-import RoutingButton from "../../Buttons/RoutingButton";
+import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
 export default function SaveRecipe() {
   return (
-    <div className="save-recipe">
+    <div className="save-recipe" id="ingredients">
       <div className="save-recipe-name">
         <SaveRecipeTextBox />
         <NameRecipeInput />
@@ -18,8 +18,8 @@ export default function SaveRecipe() {
         <p>0.4 g yeast</p>
       </section>
       <div className="save-recipe--buttons">
-        <RoutingButton size="xlarge" label="lets bake" />
-        <RoutingButton size="xlarge" label="save" />
+        <NavButton size="xlarge" label="lets bake" />
+        <NavButton size="xlarge" label="save" />
       </div>
     </div>
   );

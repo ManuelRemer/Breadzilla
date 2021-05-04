@@ -3,3 +3,13 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.error {
+  text-align: center;
+  margin: 20px;
+  font-size: 30px;
+}
+
+.error-highlight {
+  font-family: var(--highlight-text);
+}

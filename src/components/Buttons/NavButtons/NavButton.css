@@ -43,6 +43,7 @@
 .select-button-unselected {
   border: solid var(--color-fonts) 3px;
   color: var(--color-fonts);
+  background-color: var(--color-rose);
 }
 
 .select-button-selected {

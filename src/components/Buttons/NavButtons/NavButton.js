@@ -14,7 +14,7 @@ export default function NavButton({ label, route, size, onClick }) {
       className={["button", `button--${size}`, "routing-button"].join(" ")}
       route={route}
       label={label}
-      onClick={size !== "small" ? handleClick : ""}
+      onClick={size !== "small" ? handleClick : null}
     >
       {label}
     </button>
