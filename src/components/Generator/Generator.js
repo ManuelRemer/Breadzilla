@@ -14,7 +14,6 @@ export default function Generator() {
     { name: "Wholemeal Rye Flour", status: false, ratioValue: 0 },
   ];
   const [flours, setFlours] = useState(initialFlours);
-  // const [ratioFlours, setRatioFlours] = useState(initialFlours);
 
   function handleSelectButton(name) {
     const updateFlours = flours.map((flour) =>
