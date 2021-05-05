@@ -7,7 +7,6 @@ export default function FlourRatio({ flours, onRatioInput }) {
   const sumFlourRatio = flours.reduce((a, b) => ({
     ratioValue: a.ratioValue + b.ratioValue,
   }));
-  console.log(sumFlourRatio);
 
   function over100() {
     if (sumFlourRatio.ratioValue > 100) {
@@ -25,7 +24,7 @@ export default function FlourRatio({ flours, onRatioInput }) {
 
       <div className="generator-ratio-inputset">
         <FlourRatioInputSet flours={flours} onRatioInput={onRatioInput} />
-        <div>{over100()}</div>
+        <div className="generator-ratio-inputset__note">{over100()}</div>
       </div>
       <div className="generator-ratio-next">
         <Link

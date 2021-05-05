@@ -23,3 +23,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.generator-ratio-inputset__note {
+  color: brown;
+  font-weight: bolder;
+  margin-top: 1em;
+}

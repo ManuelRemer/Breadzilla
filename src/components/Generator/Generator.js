@@ -6,12 +6,27 @@ import { useState } from "react";
 
 export default function Generator() {
   const initialFlours = [
-    { name: "Wheat Flour 550", status: false, ratioValue: 0 },
-    { name: "Wholemeal Wheat Flour", status: false, ratioValue: 0 },
-    { name: "Spelt Flour 630", status: false, ratioValue: 0 },
-    { name: "Wholemeal Spelt Flour", status: false, ratioValue: 0 },
-    { name: "Rye Flour 1150", status: false, ratioValue: 0 },
-    { name: "Wholemeal Rye Flour", status: false, ratioValue: 0 },
+    { name: "Wheat Flour 550", status: false, ratioValue: 0, absorption: 0.65 },
+    {
+      name: "Wholemeal Wheat Flour",
+      status: false,
+      ratioValue: 0,
+      absorption: 0.7,
+    },
+    { name: "Spelt Flour 630", status: false, ratioValue: 0, absorption: 0.65 },
+    {
+      name: "Wholemeal Spelt Flour",
+      status: false,
+      ratioValue: 0,
+      absorption: 0.7,
+    },
+    { name: "Rye Flour 1150", status: false, ratioValue: 0, absorption: 0.92 },
+    {
+      name: "Wholemeal Rye Flour",
+      status: false,
+      ratioValue: 0,
+      absorption: 1,
+    },
   ];
   const [flours, setFlours] = useState(initialFlours);
 
@@ -23,11 +38,19 @@ export default function Generator() {
     );
 
     setFlours(updateFlours);
+    console.log(flours);
   }
 
   function handleRatioInput(label, value) {
+    console.log(flours);
     const updateFlours = flours.map((flour) =>
-      flour.name === label ? { ...flour, ratioValue: value } : flour
+      flour.name === label
+        ? {
+            ...flour,
+            ratioValue: value,
+            ratioLiquids: flour.ratioValue * 6 * flour.absorption,
+          }
+        : flour
     );
 
     setFlours(updateFlours);
@@ -47,7 +70,7 @@ export default function Generator() {
         src={LandingBreadSrc}
         className="landing-image"
       />
-      <SaveRecipe />
+      <SaveRecipe flours={flours} />
     </div>
   );
 }

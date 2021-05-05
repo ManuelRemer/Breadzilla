@@ -2,21 +2,33 @@ import "./SaveRecipe.css";
 import SaveRecipeTextBox from "../../StaticTextBoxes/GeneratorPage/SaveRecipe/SaveRecipeTextBox";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
-export default function SaveRecipe() {
+import SaveRecipeIngredients from "./SaveRecipeIngredients/SaveRecipeIngredients";
+import { useState } from "react";
+
+export default function SaveRecipe({ flours }) {
+  const [ingredientsList, setIngredientsList] = useState({ name: "" });
+  console.log(ingredientsList);
+  function handleNameRecipeInput(name) {
+    const updateIngredientsList = {
+      ...ingredientsList,
+      name: `${name}`,
+      flours: { flours },
+    };
+    setIngredientsList(updateIngredientsList);
+  }
+  // function handleClick() {
+  //   localStorage.setItem("name", { mehl1: 70, mehl2: 30 });
+  // }
+
   return (
     <div className="save-recipe" id="ingredients">
       <div className="save-recipe-name">
         <SaveRecipeTextBox />
-        <NameRecipeInput />
+        <NameRecipeInput onChange={handleNameRecipeInput} />
       </div>
-      <section className="save-recipe-ingredients">
-        <h3>All you need is:</h3>
-        <p>420 g wholemeal wheat flour</p>
-        <p>180 g wholemeal Spelt flour</p>
-        <p>525 g water</p>
-        <p>15 g lemon juice</p>
-        <p>0.4 g yeast</p>
-      </section>
+
+      <SaveRecipeIngredients flours={flours} />
+
       <div className="save-recipe--buttons">
         <NavButton size="xlarge" label="lets bake" />
         <NavButton size="xlarge" label="save" />

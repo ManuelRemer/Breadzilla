@@ -5,7 +5,7 @@ export default function FlourRatioInputSet({ flours, onRatioInput }) {
   const selectedFlours = flours.filter((flour) => flour.status === true);
 
   if (selectedFlours.length !== 0) {
-    let selection = selectedFlours.map((flour) => (
+    const selection = selectedFlours.map((flour) => (
       <div className="test">
         <FlourRatioInput
           label={flour.name}

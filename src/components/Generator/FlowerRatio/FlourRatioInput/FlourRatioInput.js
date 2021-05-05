@@ -6,12 +6,11 @@ export default function FlourRatioInput({
   onRatioInput,
 }) {
   function handleRatioInput(event) {
-    let value = Number(event.target.value);
+    const value = Number(event.target.value);
 
     onRatioInput(label, value);
-    console.log(value);
   }
-  console.log(label, ratioValue);
+
   return (
     <div className="flour-ratio-input">
       <label className="flour-ratio-input--label">{label}</label>
