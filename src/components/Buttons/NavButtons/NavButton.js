@@ -1,11 +1,17 @@
 import "./NavButton.css";
 import PropTypes from "prop-types";
 
-export default function NavButton({ label, route, size, onClick }) {
-  function handleClick(event) {
+export default function NavButton({ label, route, size, onClick, action }) {
+  function handleRoute(event) {
+    console.log("click");
     event.preventDefault();
     onClick(route);
     console.log(route);
+  }
+
+  function handleSave() {
+    console.log("click");
+    onClick();
   }
 
   return (
@@ -14,7 +20,10 @@ export default function NavButton({ label, route, size, onClick }) {
       className={["button", `button--${size}`, "routing-button"].join(" ")}
       route={route}
       label={label}
-      onClick={size !== "small" ? handleClick : null}
+      onClick={
+        action === "route" ? handleRoute : action === "save" ? handleSave : null
+      }
+      action={action}
     >
       {label}
     </button>

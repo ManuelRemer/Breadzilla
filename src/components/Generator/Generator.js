@@ -48,7 +48,7 @@ export default function Generator() {
         ? {
             ...flour,
             ratioValue: value,
-            ratioLiquids: flour.ratioValue * 6 * flour.absorption,
+            ratioLiquids: value * 6 * flour.absorption,
           }
         : flour
     );

@@ -2,7 +2,6 @@ export default function SaveRecipeIngredients({ flours }) {
   const ingredients = flours.filter((flour) => flour.ratioValue > 0);
 
   const amountLiquids = ingredients.reduce(liquidReducer, { ratioLiquids: 0 });
-  console.log(amountLiquids);
 
   function liquidReducer(totlaLiquid, currentLiquid) {
     return {
@@ -18,7 +17,6 @@ export default function SaveRecipeIngredients({ flours }) {
       </div>
     ));
   }
-
   function Liquids() {
     return (
       <div>

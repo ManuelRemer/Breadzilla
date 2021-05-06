@@ -2,7 +2,7 @@ import "./LandingNavigation.css";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import { useHistory } from "react-router-dom";
 
-export default function LandingNavigation({ labels, size, routes }) {
+export default function LandingNavigation({ labels, size, routes, action }) {
   let history = useHistory();
   function handleRoute(x) {
     history.push(`${x}`);
@@ -19,6 +19,7 @@ export default function LandingNavigation({ labels, size, routes }) {
           route={label === labels[0] ? routes[0] : routes[1]}
           navigation="true"
           onClick={handleRoute}
+          action={action}
         />
       ))}
     </nav>
