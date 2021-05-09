@@ -3,16 +3,22 @@ import "./FlourRatioInputSet.css";
 
 export default function FlourRatioInputSet({ flours, onRatioInput }) {
   const selectedFlours = flours.filter((flour) => flour.status === true);
-
   if (selectedFlours.length !== 0) {
     const selection = selectedFlours.map((flour) => (
       <div className="test">
         <FlourRatioInput
           label={flour.name}
           key={flour.name}
-          size={selectedFlours.length > 3 ? "small" : "large"}
+          size={
+            selectedFlours.length <= 3
+              ? "large"
+              : selectedFlours.length > 4
+              ? "small"
+              : "medium"
+          }
           ratioValue={flour.ratioValue}
           onRatioInput={onRatioInput}
+          selectedFlours={selectedFlours}
         />
       </div>
     ));

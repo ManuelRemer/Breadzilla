@@ -1,7 +1,7 @@
 .generator-ratio {
   background-color: var(--color-rose);
   display: grid;
-  grid-template-rows: auto min-content auto;
+  grid-template-rows: 160px auto 80px;
   height: 100vh;
 }
 
@@ -17,6 +17,13 @@
   align-items: center;
   justify-content: center;
 }
+.generator-ratio--note-pure {
+  font-weight: bolder;
+  margin: 1em 4em 0 4em;
+  text-align: center;
+  font-size: 20px;
+}
+
 .generator-ratio-next {
   grid-row: 3 / 4;
   display: flex;

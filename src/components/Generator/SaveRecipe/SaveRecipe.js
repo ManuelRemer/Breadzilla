@@ -4,58 +4,54 @@ import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
 import SaveRecipeIngredients from "./SaveRecipeIngredients/SaveRecipeIngredients";
 import { useState } from "react";
+import { areArraysDeepEqual } from "../../../customHooks/customHooks";
 
 export default function SaveRecipe({ flours }) {
   const [ingredientsList, setIngredientsList] = useState({
     name: "",
     ingredients: flours,
   });
-  const [savedRecipesState, setSavedRecipesState] = useState([]);
-  console.log(savedRecipesState);
+  const [note, setNote] = useState("");
+
   function handleNameRecipeInput(name) {
     const updateIngredientsList = {
       ...ingredientsList,
       name: name,
     };
-
     setIngredientsList(updateIngredientsList);
     console.log(ingredientsList);
   }
 
   function handleSave() {
     const savedRecipes = getRecipesFromLocalStorage();
-    setSavedRecipesState(savedRecipes);
-    console.log(savedRecipesState);
-    const filterdSavedRecipesName = savedRecipesState.filter(
-      (recipe) => recipe.name === ingredientsList.name
+    // setSavedRecipesState(savedRecipes);
+
+    const anyRecipeEqual = savedRecipes.find((savedRecipe) =>
+      areArraysDeepEqual(
+        savedRecipe.recipe.ingredients,
+        ingredientsList.ingredients,
+        "ratioValue"
+      )
     );
-    console.log(filterdSavedRecipesName);
+    console.log(anyRecipeEqual);
 
-    // const anyRecipeEqual = savedRecipesState.some(
-    //   floursEqual(savedRecipesState.recipe.flours, ingredientsList.recipe)
-    // );
+    const anyNameEqual = savedRecipes.some(
+      (savedRecipe) => savedRecipe.recipe.name === ingredientsList.name
+    );
 
-    function floursEqual(obj1, obj2) {
-      const keys1 = Object.keys(obj1);
-      const keys2 = Object.keys(obj2);
-      if (keys1.length !== keys2.lengt) {
-        return false;
-      }
-      keys1.forEach((key) => {
-        if (obj1.key !== obj2.key) {
-          return false;
-        }
-      });
-      return true;
-    }
-
-    if (filterdSavedRecipesName.length === 0) {
+    if (anyNameEqual === false && !anyRecipeEqual) {
       addRecipeToLocalStorage({ recipe: ingredientsList });
 
-      setSavedRecipesState(savedRecipes);
+      // setSavedRecipesState(savedRecipes);
     } else {
-      if (filterdSavedRecipesName.length !== 0) {
-        alert("Choose another name");
+      if (anyNameEqual !== false) {
+        setNote("This name is already used, please choose another one");
+      } else {
+        if (anyRecipeEqual !== false) {
+          setNote(
+            `This recipe already exists, look at ${anyRecipeEqual.recipe.name}`
+          );
+        }
       }
     }
   }
@@ -67,6 +63,7 @@ export default function SaveRecipe({ flours }) {
   }
   function getRecipesFromLocalStorage() {
     const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
+    console.log(savedRecipes);
     return savedRecipes;
   }
 
@@ -75,9 +72,11 @@ export default function SaveRecipe({ flours }) {
       <div className="save-recipe-name">
         <SaveRecipeTextBox />
         <NameRecipeInput onChange={handleNameRecipeInput} />
+        <p>{note}</p>
       </div>
-
-      <SaveRecipeIngredients flours={flours} save={ingredientsList} />
+      <div className="save-recipe-ingredients">
+        <SaveRecipeIngredients flours={flours} save={ingredientsList} />
+      </div>
 
       <div className="save-recipe--buttons">
         <NavButton size="xlarge" label="lets bake" />

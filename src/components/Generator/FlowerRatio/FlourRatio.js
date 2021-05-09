@@ -9,10 +9,24 @@ export default function FlourRatio({ flours, onRatioInput }) {
   }));
 
   function over100() {
-    if (sumFlourRatio.ratioValue > 100) {
-      return <p>You've added to much</p>;
-    } else if (sumFlourRatio.ratioValue < 100) {
-      return <p>{100 - sumFlourRatio.ratioValue}% still missing</p>;
+    const selectedFlours = flours.filter((flour) => flour.status === true);
+    console.log(selectedFlours);
+    if (selectedFlours.length !== 1) {
+      if (sumFlourRatio.ratioValue > 100) {
+        return <p>You've added to much</p>;
+      } else if (sumFlourRatio.ratioValue < 100) {
+        return <p>{100 - sumFlourRatio.ratioValue}% still missing</p>;
+      }
+    } else {
+      return (
+        <p className="generator-ratio--note-pure">
+          Ah! You are a purist, so then only&nbsp;
+          {selectedFlours.map((flour) => {
+            return flour.name;
+          })}
+          .
+        </p>
+      );
     }
   }
 

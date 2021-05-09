@@ -13,10 +13,11 @@ export default function FlourRatioInput({
 
   return (
     <div className="flour-ratio-input">
-      <label className="flour-ratio-input--label">{label}</label>
+      <label className={`flour-ratio-input--label-${size}`}>{label}</label>
       <div className="flex">
         <input
           type="text"
+          maxLength="3"
           className={[
             "flour-ratio-input--input",
             `flour-ratio-input--input-${size}`,
@@ -25,7 +26,7 @@ export default function FlourRatioInput({
           value={ratioValue}
           onChange={handleRatioInput}
         ></input>
-        <span className="flour-ratio-input--span">%</span>
+        <span className={`flour-ratio-input--span-${size}`}>%</span>
       </div>
     </div>
   );
