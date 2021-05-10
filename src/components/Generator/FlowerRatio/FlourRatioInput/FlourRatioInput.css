@@ -6,21 +6,46 @@
   height: min-content;
 }
 
-.flour-ratio-input--label {
+.flour-ratio-input--label-large {
   font-size: 24px;
   color: var(--color-fonts);
   margin: 0.5em 0 0.3em 0;
 }
 
-.flour-ratio-input--span {
+.flour-ratio-input--label-medium {
+  font-size: 20px;
+  color: var(--color-fonts);
+  margin: 0.5em 0 0.3em 0;
+}
+
+.flour-ratio-input--label-small {
+  font-size: 17px;
+  color: var(--color-fonts);
+  margin: 0.5em 0 0.1em 0;
+}
+
+.flour-ratio-input--span-large {
   margin-left: 0.5em;
   font-family: "Titan One", cursive;
   font-size: 40px;
   color: var(--color-fonts);
 }
 
+.flour-ratio-input--span-medium {
+  margin-left: 0.5em;
+  font-family: "Titan One", cursive;
+  font-size: 25px;
+  color: var(--color-fonts);
+}
+
+.flour-ratio-input--span-small {
+  margin-left: 0.5em;
+  font-family: "Titan One", cursive;
+  font-size: 30px;
+  color: var(--color-fonts);
+}
+
 .flour-ratio-input--input {
-  height: 60px;
   width: 125px;
   border: none;
   border-radius: 5px;
@@ -28,7 +53,25 @@
   box-shadow: 0.5px 1px 8px -1px var(--color-fonts);
 }
 
+.flour-ratio-input--input-small {
+  height: 30px;
+  font-size: 20px;
+}
+
+.flour-ratio-input--input-medium {
+  height: 40px;
+  font-size: 30px;
+}
+.flour-ratio-input--input-large {
+  height: 60px;
+  font-size: 40px;
+}
+
 .flex {
   display: flex;
   align-items: center;
+}
+input {
+  text-align: center;
+  color: var(--color-fonts);
 }

@@ -1,20 +1,38 @@
 .generator-ratio {
   background-color: var(--color-rose);
   display: grid;
-  grid-template-rows: auto 70vh auto;
+  grid-template-rows: 160px auto 80px;
   height: 100vh;
 }
 
 .generator-ratio-textbox {
   grid-row: 1 / 2;
   text-align: center;
+  margin: 5% 0 5% 0;
 }
 .generator-ratio-inputset {
   grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+.generator-ratio--note-pure {
+  font-weight: bolder;
+  margin: 1em 4em 0 4em;
+  text-align: center;
+  font-size: 20px;
+}
+
 .generator-ratio-next {
   grid-row: 3 / 4;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.generator-ratio-inputset__note {
+  color: brown;
+  font-weight: bolder;
+  margin-top: 1em;
 }

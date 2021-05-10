@@ -19,6 +19,7 @@ export default function LandingPage() {
           labels={["Bread generator", "Browse your recipes"]}
           size="xlarge"
           routes={["/generator", "/collection"]}
+          action="route"
         />
       </div>
     </div>

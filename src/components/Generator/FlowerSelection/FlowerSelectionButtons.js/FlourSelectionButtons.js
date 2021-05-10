@@ -7,6 +7,7 @@ export default function FlourSelectionButtons({ onClick, flours }) {
       onClick={onClick}
       style={flour.status ? "selected" : "unselected"}
       size="xlarge"
+      action="none"
     />
   ));
   return selection;
