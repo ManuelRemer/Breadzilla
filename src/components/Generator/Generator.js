@@ -50,18 +50,21 @@ export default function Generator() {
     },
   ];
   const [flours, setFlours] = useState(initialFlours);
+  const sumFlourRatio = flours.reduce((a, b) => ({
+    ratioValue: a.ratioValue + b.ratioValue,
+  }));
 
   function handleSelectButton(name) {
     const selectedFlours = flours.filter((flour) => flour.status === true);
-    if (selectedFlours.length + 1 === 1) {
+    if (selectedFlours.length === 0) {
       const updateFlours = flours.map((flour) =>
         flour.name === name
           ? {
               ...flour,
               status: !flour.status,
               ratioValue: 100,
-              ratioLiquids: 100 * 6 * flour.absorption,
-              ratioYeast: 100 * 6 * flour.yeast,
+              ratioLiquids: 600 * flour.absorption,
+              ratioYeast: 600 * flour.yeast,
             }
           : flour
       );
@@ -90,7 +93,6 @@ export default function Generator() {
             }
           : flour
       );
-
       setFlours(updateFlours);
     } else {
       const updateFlours = flours.map((flour) =>
@@ -103,9 +105,15 @@ export default function Generator() {
             }
           : flour
       );
-
       setFlours(updateFlours);
     }
+  }
+
+  function renderSaveRecipe() {
+    if (sumFlourRatio.ratioValue === 100)
+      return (
+        <SaveRecipe flours={flours} sumFlourRatio={sumFlourRatio.ratioValue} />
+      );
   }
 
   return (
@@ -116,13 +124,17 @@ export default function Generator() {
         src={LandingBreadSrc}
         className="landing-image"
       />
-      <FlourRatio flours={flours} onRatioInput={handleRatioInput} />
+      <FlourRatio
+        flours={flours}
+        onRatioInput={handleRatioInput}
+        sumFlourRatio={sumFlourRatio.ratioValue}
+      />
       <img
         alt="crispy fresh bread"
         src={LandingBreadSrc}
         className="landing-image"
       />
-      <SaveRecipe flours={flours} />
+      {renderSaveRecipe()}
     </div>
   );
 }

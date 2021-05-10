@@ -3,19 +3,16 @@ import { Link } from "react-scroll";
 import FlourRatioTextBox from "../../StaticTextBoxes/GeneratorPage/FlourRatio/FlourRatioTextBox";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import FlourRatioInputSet from "./FlourRatioInputSet/FlourRatioInputSet";
-export default function FlourRatio({ flours, onRatioInput }) {
-  const sumFlourRatio = flours.reduce((a, b) => ({
-    ratioValue: a.ratioValue + b.ratioValue,
-  }));
 
+export default function FlourRatio({ flours, onRatioInput, sumFlourRatio }) {
+  console.log(sumFlourRatio);
   function over100() {
     const selectedFlours = flours.filter((flour) => flour.status === true);
-    console.log(selectedFlours);
     if (selectedFlours.length !== 1) {
-      if (sumFlourRatio.ratioValue > 100) {
+      if (sumFlourRatio > 100) {
         return <p>You've added to much</p>;
-      } else if (sumFlourRatio.ratioValue < 100) {
-        return <p>{100 - sumFlourRatio.ratioValue}% still missing</p>;
+      } else if (sumFlourRatio < 100) {
+        return <p>{100 - sumFlourRatio}% still missing</p>;
       }
     } else {
       return (
@@ -30,6 +27,19 @@ export default function FlourRatio({ flours, onRatioInput }) {
     }
   }
 
+  function renderScrollButtonIngredients() {
+    if (sumFlourRatio === 100)
+      return (
+        <Link
+          className="generator-select-scroll"
+          to="ingredients"
+          smooth={true}
+        >
+          <NavButton label="i" size="small" />
+        </Link>
+      );
+  }
+
   return (
     <div className="generator-ratio" id="ratio">
       <div className="generator-ratio-textbox">
@@ -41,13 +51,7 @@ export default function FlourRatio({ flours, onRatioInput }) {
         <div className="generator-ratio-inputset__note">{over100()}</div>
       </div>
       <div className="generator-ratio-next">
-        <Link
-          className="generator-select-scroll"
-          to="ingredients"
-          smooth={true}
-        >
-          <NavButton label="i" size="small" />
-        </Link>
+        {renderScrollButtonIngredients()}
       </div>
     </div>
   );
