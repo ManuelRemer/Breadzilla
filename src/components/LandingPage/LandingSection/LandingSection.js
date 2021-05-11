@@ -4,6 +4,7 @@ import Headline from "../../StaticTextBoxes/LandingPage/Headline/Headline";
 import Welcome from "../../StaticTextBoxes/LandingPage/Welcome/Welcome";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import ScrollButton from "../../Buttons/NavButtons/NavButton";
+import { Link } from "react-scroll";
 import "./LandingSection.css";
 export default function LandingSection() {
   let history = useHistory();
@@ -12,14 +13,14 @@ export default function LandingSection() {
   }
 
   return (
-    <div className="landing-page">
-      <Headline className="landing-headline" />
+    <div className="LandingSection">
+      <Headline className="LandingSection_Headline" />
       <img
         alt="crispy fresh bread"
         src={LandingBreadSrc}
-        className="landing-image"
+        className="LandingSection_Image"
       />
-      <div className="landing-rest">
+      <div className="LandingSectin_Text">
         <Welcome />
         <NavButton
           label="Bread Generator"
@@ -28,13 +29,9 @@ export default function LandingSection() {
           onClick={handleRoute}
           action="route"
         />
-        <ScrollButton label="Browse yor recipes" size="xlarge" />
-        {/* <LandingNavigation
-          labels={["Bread generator", "Browse your recipes"]}
-          size="xlarge"
-          routes={["/generator", "/collection"]}
-          action="route"
-        /> */}
+        <Link to="Collection" smooth={true}>
+          <ScrollButton label="Browse yor recipes" size="xlarge" />
+        </Link>
       </div>
     </div>
   );

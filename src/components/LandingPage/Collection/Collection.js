@@ -2,7 +2,7 @@ import "./Collection.css";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 export default function Collection({ savedRecipes }) {
   return (
-    <div className="Collection">
+    <div className="Collection" id="Collection">
       <h2 className="Collection_Headline">
         Your <span>&nbsp;Bredzillas</span>
       </h2>

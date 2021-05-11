@@ -2,7 +2,7 @@
   background-color: var(--color-sand);
   display: grid;
   grid-template-rows: 20vh auto;
-  height: 100vh;
+  min-height: 60vh;
   justify-items: center;
   align-items: center;
 }
