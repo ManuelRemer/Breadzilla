@@ -21,7 +21,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <LandingPage savedRecipes={savedRecipes} />
+            <LandingPage />
           </Route>
 
           <Route exact path="/generator">

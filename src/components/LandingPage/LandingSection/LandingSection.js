@@ -1,7 +1,9 @@
 import LandingBreadSrc from "../../../images/LandingBread.jpg";
-import LandingNavigation from "../LandingNavigation/LandingNavigation";
+// import LandingNavigation from "../LandingNavigation/LandingNavigation";
 import Headline from "../../StaticTextBoxes/LandingPage/Headline/Headline";
 import Welcome from "../../StaticTextBoxes/LandingPage/Welcome/Welcome";
+import NavButton from "../../Buttons/NavButtons/NavButton";
+import ScrollButton from "../../Buttons/NavButtons/NavButton";
 import "./LandingSection.css";
 export default function LandingSection() {
   return (
@@ -14,13 +16,14 @@ export default function LandingSection() {
       />
       <div className="landing-rest">
         <Welcome />
-
-        <LandingNavigation
+        <NavButton label="Bread Generator" size="xlarge" route="/Generator" />
+        <ScrollButton label="Browse yor recipes" size="xlarge" />
+        {/* <LandingNavigation
           labels={["Bread generator", "Browse your recipes"]}
           size="xlarge"
           routes={["/generator", "/collection"]}
           action="route"
-        />
+        /> */}
       </div>
     </div>
   );
