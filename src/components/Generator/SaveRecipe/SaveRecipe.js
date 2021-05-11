@@ -4,9 +4,13 @@ import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
 import SaveRecipeIngredients from "./SaveRecipeIngredients/SaveRecipeIngredients";
 import { useState } from "react";
-import { areArraysDeepEqual } from "../../Generator/libGenerator";
+import {
+  areArraysDeepEqual,
+  getRecipesFromLocalStorage,
+  addRecipeToLocalStorage,
+} from "../../Generator/libGenerator";
 
-export default function SaveRecipe({ flours, totalRatioRyes }) {
+export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
   const [ingredientsList, setIngredientsList] = useState({
     name: "",
     ingredients: flours,
@@ -39,27 +43,18 @@ export default function SaveRecipe({ flours, totalRatioRyes }) {
     if (!anyNameEqual && !anyRecipeEqual) {
       addRecipeToLocalStorage({ recipe: ingredientsList });
       setNote("");
+      onSave(getRecipesFromLocalStorage);
     } else {
       if (anyRecipeEqual) {
         setNote(
           `This recipe already exists, look at ${anyRecipeEqual.recipe.name}`
         );
-        console.log("hier abgebogen");
       } else {
         if (anyNameEqual !== false) {
           setNote("This name is already used, please choose another one");
         }
       }
     }
-  }
-
-  function addRecipeToLocalStorage(recipe) {
-    const savedRecipes = getRecipesFromLocalStorage();
-    savedRecipes.push(recipe);
-    localStorage.setItem("recipes", JSON.stringify(savedRecipes));
-  }
-  function getRecipesFromLocalStorage() {
-    return JSON.parse(localStorage.getItem("recipes")) || [];
   }
 
   return (

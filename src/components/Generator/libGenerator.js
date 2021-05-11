@@ -12,3 +12,13 @@ export function areArraysDeepEqual(arr1, arr2, key1) {
 
   return resultEvery;
 }
+
+export function addRecipeToLocalStorage(recipe) {
+  const savedRecipes = getRecipesFromLocalStorage();
+  savedRecipes.push(recipe);
+  localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+}
+
+export function getRecipesFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("recipes")) || [];
+}

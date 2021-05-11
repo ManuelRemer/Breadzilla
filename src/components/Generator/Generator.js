@@ -5,7 +5,7 @@ import LandingBreadSrc from "../../images/LandingBread.jpg";
 import { useState } from "react";
 import { flourRatioReducer } from "./libGenerator";
 
-export default function Generator() {
+export default function Generator({ onSave }) {
   const initialFlours = [
     {
       name: "Wheat Flour 550",
@@ -128,6 +128,7 @@ export default function Generator() {
             flours={flours}
             sumFlourRatio={sumFlourRatio.ratioValue}
             totalRatioRyes={totalRatioRyes}
+            onSave={onSave}
           />
         </div>
       );
