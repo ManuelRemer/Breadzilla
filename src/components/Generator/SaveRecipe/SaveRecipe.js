@@ -4,7 +4,7 @@ import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
 import SaveRecipeIngredients from "./SaveRecipeIngredients/SaveRecipeIngredients";
 import { useState } from "react";
-import { areArraysDeepEqual } from "../../../customHooks/customHooks";
+import { areArraysDeepEqual } from "../../Generator/libGenerator";
 
 export default function SaveRecipe({ flours, totalRatioRyes }) {
   const [ingredientsList, setIngredientsList] = useState({

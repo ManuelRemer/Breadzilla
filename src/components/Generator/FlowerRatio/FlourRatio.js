@@ -1,7 +1,7 @@
 import "./FlourRatio.css";
 import { Link } from "react-scroll";
 import FlourRatioTextBox from "../../StaticTextBoxes/GeneratorPage/FlourRatio/FlourRatioTextBox";
-import NavButton from "../../Buttons/NavButtons/NavButton";
+import ScrollButton from "../../Buttons/NavButtons/ScrollButton";
 import FlourRatioInputSet from "./FlourRatioInputSet/FlourRatioInputSet";
 
 export default function FlourRatio({
@@ -47,7 +47,7 @@ export default function FlourRatio({
           to="ingredients"
           smooth={true}
         >
-          <NavButton label="i" size="small" />
+          <ScrollButton label="i" size="small" />
         </Link>
       );
   }
