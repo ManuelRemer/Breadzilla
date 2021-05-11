@@ -1,9 +1,11 @@
 import FlourSelection from "../Generator/FlowerSelection/FlourSelection";
 import FlourRatio from "../Generator/FlowerRatio/FlourRatio";
 import SaveRecipe from "./SaveRecipe/SaveRecipe";
-import LandingBreadSrc from "../../images/LandingBread.jpg";
+import BrotImTopf from "../../images/BrotimTopf.jpg";
+import Mehl from "../../images/mehl2.jpg";
 import { useState } from "react";
 import { flourRatioReducer } from "./libGenerator";
+import "./Generator.css";
 
 export default function Generator({ onSave }) {
   const initialFlours = [
@@ -118,37 +120,35 @@ export default function Generator({ onSave }) {
   function renderSaveRecipe() {
     if (sumFlourRatio.ratioValue === 100 && totalRatioRyes.ratioValue <= 20)
       return (
-        <div>
-          <img
-            alt="crispy fresh bread"
-            src={LandingBreadSrc}
-            className="landing-image"
-          />
-          <SaveRecipe
-            flours={flours}
-            sumFlourRatio={sumFlourRatio.ratioValue}
-            totalRatioRyes={totalRatioRyes}
-            onSave={onSave}
-          />
-        </div>
+        <SaveRecipe
+          flours={flours}
+          sumFlourRatio={sumFlourRatio.ratioValue}
+          totalRatioRyes={totalRatioRyes}
+          onSave={onSave}
+        />
       );
   }
 
   return (
-    <div>
-      <FlourSelection onClick={handleSelectButton} flours={flours} />
+    <div className="Generator">
+      <div className="Generator_FlourSelection">
+        <FlourSelection onClick={handleSelectButton} flours={flours} />
+      </div>
+      <img alt="crispy fresh bread" src={Mehl} className="Generator_Image1" />
+      <div className="Generator_FlourRatio">
+        <FlourRatio
+          flours={flours}
+          onRatioInput={handleRatioInput}
+          sumFlourRatio={sumFlourRatio.ratioValue}
+          totalRatioRyes={totalRatioRyes}
+        />
+      </div>
       <img
         alt="crispy fresh bread"
-        src={LandingBreadSrc}
-        className="landing-image"
+        src={BrotImTopf}
+        className="Generator_Image2"
       />
-      <FlourRatio
-        flours={flours}
-        onRatioInput={handleRatioInput}
-        sumFlourRatio={sumFlourRatio.ratioValue}
-        totalRatioRyes={totalRatioRyes}
-      />
-      {renderSaveRecipe()}
+      <div className="Generator_SaveRecipe">{renderSaveRecipe()}</div>
     </div>
   );
 }
