@@ -13,7 +13,9 @@ export default function FlourRatio({
   const selectedFlours = flours.filter((flour) => flour.status === true);
   function renderToMuchRye() {
     if (totalRatioRyes.ratioValue > 20) {
-      return <p>Not more then 20% rye flours!</p>;
+      return (
+        <p>More then 20% rye flours? You need to bake with sour dough then.</p>
+      );
     }
   }
   function renderPurist() {

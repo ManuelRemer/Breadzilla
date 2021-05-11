@@ -116,7 +116,7 @@ export default function Generator() {
   }
 
   function renderSaveRecipe() {
-    if (sumFlourRatio.ratioValue === 100)
+    if (sumFlourRatio.ratioValue === 100 && totalRatioRyes.ratioValue <= 20)
       return (
         <div>
           <img

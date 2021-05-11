@@ -36,5 +36,7 @@
 .generator-ratio-inputset__note {
   color: brown;
   font-weight: bolder;
-  margin-top: 1em;
+  max-width: 80%;
+  text-align: center;
+  /* margin-top: 1em; */
 }
