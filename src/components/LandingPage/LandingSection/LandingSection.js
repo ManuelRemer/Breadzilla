@@ -2,7 +2,7 @@ import LandingBreadSrc from "../../../images/LandingBread.jpg";
 import LandingNavigation from "../LandingNavigation/LandingNavigation";
 import Headline from "../../StaticTextBoxes/LandingPage/Headline/Headline";
 import Welcome from "../../StaticTextBoxes/LandingPage/Welcome/Welcome";
-import "../LandingPage.css";
+import "./LandingSection.css";
 export default function LandingSection() {
   return (
     <div className="landing-page">
