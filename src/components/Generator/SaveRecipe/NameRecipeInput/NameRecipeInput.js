@@ -3,7 +3,7 @@ import "./NameRecipeInput.css";
 export default function NameRecipeInput({ onChange }) {
   function handleChange(event) {
     const name = event.target.value;
-    console.log(name);
+
     onChange(name);
   }
 

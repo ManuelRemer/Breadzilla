@@ -3,6 +3,7 @@ import FlourRatio from "../Generator/FlowerRatio/FlourRatio";
 import SaveRecipe from "./SaveRecipe/SaveRecipe";
 import LandingBreadSrc from "../../images/LandingBread.jpg";
 import { useState } from "react";
+import { flourRatioReducer } from "./libGenerator";
 
 export default function Generator() {
   const initialFlours = [
@@ -50,9 +51,14 @@ export default function Generator() {
     },
   ];
   const [flours, setFlours] = useState(initialFlours);
+
   const sumFlourRatio = flours.reduce((a, b) => ({
     ratioValue: a.ratioValue + b.ratioValue,
   }));
+
+  const ryes = flours.filter((flour) => flour.name.includes("Rye"));
+
+  const totalRatioRyes = ryes.reduce(flourRatioReducer, { ratioValue: 0 });
 
   function handleSelectButton(name) {
     const selectedFlours = flours.filter((flour) => flour.status === true);
@@ -112,7 +118,18 @@ export default function Generator() {
   function renderSaveRecipe() {
     if (sumFlourRatio.ratioValue === 100)
       return (
-        <SaveRecipe flours={flours} sumFlourRatio={sumFlourRatio.ratioValue} />
+        <div>
+          <img
+            alt="crispy fresh bread"
+            src={LandingBreadSrc}
+            className="landing-image"
+          />
+          <SaveRecipe
+            flours={flours}
+            sumFlourRatio={sumFlourRatio.ratioValue}
+            totalRatioRyes={totalRatioRyes}
+          />
+        </div>
       );
   }
 
@@ -128,11 +145,7 @@ export default function Generator() {
         flours={flours}
         onRatioInput={handleRatioInput}
         sumFlourRatio={sumFlourRatio.ratioValue}
-      />
-      <img
-        alt="crispy fresh bread"
-        src={LandingBreadSrc}
-        className="landing-image"
+        totalRatioRyes={totalRatioRyes}
       />
       {renderSaveRecipe()}
     </div>

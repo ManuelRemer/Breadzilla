@@ -27,8 +27,10 @@
 .generator-ratio-next {
   grid-row: 3 / 4;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 30px;
 }
 
 .generator-ratio-inputset__note {

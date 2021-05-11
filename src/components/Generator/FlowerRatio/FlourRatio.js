@@ -4,17 +4,20 @@ import FlourRatioTextBox from "../../StaticTextBoxes/GeneratorPage/FlourRatio/Fl
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import FlourRatioInputSet from "./FlourRatioInputSet/FlourRatioInputSet";
 
-export default function FlourRatio({ flours, onRatioInput, sumFlourRatio }) {
-  console.log(sumFlourRatio);
-  function over100() {
-    const selectedFlours = flours.filter((flour) => flour.status === true);
-    if (selectedFlours.length !== 1) {
-      if (sumFlourRatio > 100) {
-        return <p>You've added to much</p>;
-      } else if (sumFlourRatio < 100) {
-        return <p>{100 - sumFlourRatio}% still missing</p>;
-      }
-    } else {
+export default function FlourRatio({
+  flours,
+  onRatioInput,
+  sumFlourRatio,
+  totalRatioRyes,
+}) {
+  const selectedFlours = flours.filter((flour) => flour.status === true);
+  function renderToMuchRye() {
+    if (totalRatioRyes.ratioValue > 20) {
+      return <p>Not more then 20% rye flours!</p>;
+    }
+  }
+  function renderPurist() {
+    if (selectedFlours.length === 1) {
       return (
         <p className="generator-ratio--note-pure">
           Ah! You are a purist, so then only&nbsp;
@@ -26,9 +29,16 @@ export default function FlourRatio({ flours, onRatioInput, sumFlourRatio }) {
       );
     }
   }
+  function renderNot100() {
+    if (sumFlourRatio > 100) {
+      return <p>You've added to much!</p>;
+    } else if (sumFlourRatio < 100) {
+      return <p>{100 - sumFlourRatio}% still missing</p>;
+    }
+  }
 
   function renderScrollButtonIngredients() {
-    if (sumFlourRatio === 100)
+    if (sumFlourRatio === 100 && totalRatioRyes.ratioValue <= 20)
       return (
         <Link
           className="generator-select-scroll"
@@ -47,10 +57,18 @@ export default function FlourRatio({ flours, onRatioInput, sumFlourRatio }) {
       </div>
 
       <div className="generator-ratio-inputset">
-        <FlourRatioInputSet flours={flours} onRatioInput={onRatioInput} />
-        <div className="generator-ratio-inputset__note">{over100()}</div>
+        <FlourRatioInputSet
+          flours={flours}
+          onRatioInput={onRatioInput}
+          totalRatioRyes={totalRatioRyes}
+        />
+        {renderPurist()}
       </div>
       <div className="generator-ratio-next">
+        <div className="generator-ratio-inputset__note">
+          {renderToMuchRye()}
+        </div>
+        <div className="generator-ratio-inputset__note">{renderNot100()}</div>
         {renderScrollButtonIngredients()}
       </div>
     </div>
