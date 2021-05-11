@@ -6,7 +6,7 @@ import SaveRecipeIngredients from "./SaveRecipeIngredients/SaveRecipeIngredients
 import { useState } from "react";
 import { areArraysDeepEqual } from "../../../customHooks/customHooks";
 
-export default function SaveRecipe({ flours }) {
+export default function SaveRecipe({ flours, totalRatioRyes }) {
   const [ingredientsList, setIngredientsList] = useState({
     name: "",
     ingredients: flours,
@@ -19,12 +19,10 @@ export default function SaveRecipe({ flours }) {
       name: name,
     };
     setIngredientsList(updateIngredientsList);
-    console.log(ingredientsList);
   }
 
   function handleSave() {
     const savedRecipes = getRecipesFromLocalStorage();
-    // setSavedRecipesState(savedRecipes);
 
     const anyRecipeEqual = savedRecipes.find((savedRecipe) =>
       areArraysDeepEqual(
@@ -33,24 +31,23 @@ export default function SaveRecipe({ flours }) {
         "ratioValue"
       )
     );
-    console.log(anyRecipeEqual);
 
     const anyNameEqual = savedRecipes.some(
       (savedRecipe) => savedRecipe.recipe.name === ingredientsList.name
     );
 
-    if (anyNameEqual === false && !anyRecipeEqual) {
+    if (!anyNameEqual && !anyRecipeEqual) {
       addRecipeToLocalStorage({ recipe: ingredientsList });
-
-      // setSavedRecipesState(savedRecipes);
+      setNote("");
     } else {
-      if (anyNameEqual !== false) {
-        setNote("This name is already used, please choose another one");
+      if (anyRecipeEqual) {
+        setNote(
+          `This recipe already exists, look at ${anyRecipeEqual.recipe.name}`
+        );
+        console.log("hier abgebogen");
       } else {
-        if (anyRecipeEqual !== false) {
-          setNote(
-            `This recipe already exists, look at ${anyRecipeEqual.recipe.name}`
-          );
+        if (anyNameEqual !== false) {
+          setNote("This name is already used, please choose another one");
         }
       }
     }
@@ -62,9 +59,7 @@ export default function SaveRecipe({ flours }) {
     localStorage.setItem("recipes", JSON.stringify(savedRecipes));
   }
   function getRecipesFromLocalStorage() {
-    const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
-    console.log(savedRecipes);
-    return savedRecipes;
+    return JSON.parse(localStorage.getItem("recipes")) || [];
   }
 
   return (
@@ -72,14 +67,18 @@ export default function SaveRecipe({ flours }) {
       <div className="save-recipe-name">
         <SaveRecipeTextBox />
         <NameRecipeInput onChange={handleNameRecipeInput} />
-        <p>{note}</p>
+        <p className="SaveRecipe_Note ">{note}</p>
       </div>
-      <div className="save-recipe-ingredients">
-        <SaveRecipeIngredients flours={flours} save={ingredientsList} />
+      <div>
+        <SaveRecipeIngredients
+          flours={flours}
+          save={ingredientsList}
+          totalRatioRyes={totalRatioRyes}
+        />
       </div>
 
       <div className="save-recipe--buttons">
-        <NavButton size="xlarge" label="lets bake" />
+        {/* <NavButton size="xlarge" label="lets bake" /> */}
         <NavButton
           size="xlarge"
           label="save"

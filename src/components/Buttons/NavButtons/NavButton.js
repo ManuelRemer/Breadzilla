@@ -10,7 +10,6 @@ export default function NavButton({ label, route, size, onClick, action }) {
   }
 
   function handleSave() {
-    console.log("click");
     onClick();
   }
 

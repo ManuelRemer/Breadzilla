@@ -1,4 +1,4 @@
-import FlourSelectionButtons from "./FlowerSelectionButtons.js/FlourSelectionButtons";
+import FlourSelectionButtons from "./FlowerSelectionButtons/FlourSelectionButtons";
 import FlourSelectionTextBox from "../../StaticTextBoxes/GeneratorPage/FlourSelection/FlourSelectionTextBox";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import "./FlourSelection.css";

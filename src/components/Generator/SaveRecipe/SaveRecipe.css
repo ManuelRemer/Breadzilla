@@ -2,7 +2,7 @@
   height: 100vh;
   background-color: var(--color-green);
   display: grid;
-  grid-template-rows: 40vh 20vh 35vh;
+  grid-template-rows: 40vh auto 20vh;
   align-items: center;
   justify-content: center;
 }
@@ -11,22 +11,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  margin: 0 20 0 20;
+}
+.SaveRecipe_Note {
+  text-align: center;
+  margin-top: 10px;
+  width: 80%;
+  color: brown;
 }
 
 .save-recipe-ingredients {
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+
+  text-align: center;
+
+  gap: 0.5em;
   color: var(--color-fonts);
 }
+
+.SaveRecipe_Ingredients_Item {
+  display: flex;
+  gap: 10px;
+  margin: auto 50px;
+}
+.SaveRecipe_Ingredients_Item p:first-child {
+  text-align: end;
+  width: 60px;
+}
+
+.SaveRecipe_Ingredients_Item p:last-child {
+  text-align: start;
+}
+
 .save-recipe--buttons {
   grid-row: 3 / 4;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
