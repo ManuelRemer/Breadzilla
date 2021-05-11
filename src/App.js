@@ -9,6 +9,7 @@ function App() {
   const [savedRecipes, setSavedRecipesApp] = useState(
     getRecipesFromLocalStorage()
   );
+  console.log(savedRecipes);
 
   useEffect(() => console.log("changed"), [savedRecipes]);
 
@@ -21,7 +22,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <LandingPage />
+            <LandingPage savedRecipes={savedRecipes} />
           </Route>
 
           <Route exact path="/generator">
