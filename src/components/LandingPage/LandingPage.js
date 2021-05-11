@@ -1,27 +1,21 @@
-import LandingBreadSrc from "../../images/LandingBread.jpg";
-import LandingNavigation from "./LandingNavigation/LandingNavigation";
-import Headline from "../StaticTextBoxes/LandingPage/Headline/Headline";
-import Welcome from "../StaticTextBoxes/LandingPage/Welcome/Welcome";
+import LandingSection from "./LandingSection/LandingSection";
+import Collection from "./Collection/Collection";
+import CollectionImg from "../../images/Collection.jpg";
+import BrotHände from "../../images/BrotHände.jpg";
 import "./LandingPage.css";
-export default function LandingPage() {
-  return (
-    <div className="landing-page">
-      <Headline className="landing-headline" />
-      <img
-        alt="crispy fresh bread"
-        src={LandingBreadSrc}
-        className="landing-image"
-      />
-      <div className="landing-rest">
-        <Welcome />
 
-        <LandingNavigation
-          labels={["Bread generator", "Browse your recipes"]}
-          size="xlarge"
-          routes={["/generator", "/collection"]}
-          action="route"
-        />
+export default function LandingPage({ savedRecipes }) {
+  return (
+    <div className="LandingPage">
+      <div className="LandingPage_LandingSection">
+        <LandingSection />
       </div>
+
+      <img alt="different Breads" src={CollectionImg} className="ScrollImage" />
+      <div className="LandingPage_Collection">
+        <Collection savedRecipes={savedRecipes} />
+      </div>
+      <img alt="different Breads" src={BrotHände} className="ScrollImage2" />
     </div>
   );
 }
