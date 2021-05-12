@@ -1,0 +1,26 @@
+.Generator {
+  display: grid;
+  grid-template-rows: 100vh 30vh 100vh 40vh min-content;
+}
+.Generator_FlourSelection {
+  grid-row: 1 / 2;
+}
+.Generator_Image1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-row: 2 / 3;
+}
+
+.Generator_FlourRatio {
+  grid-row: 3 / 4;
+}
+.Generator_Image2 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-row: 4 / 5;
+}
+.Generator_SaveRecipe {
+  grid-row: 5 / 6;
+}
