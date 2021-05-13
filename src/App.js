@@ -2,17 +2,20 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Generator from "./components/Generator/Generator";
+import SingleRecipe from "./components/SingleRecipe/SingleRecipe";
 import { getRecipesFromLocalStorage } from "./components/Generator/libGenerator";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
+  const [recipeClicked, setRecipeClicked] = useState();
+  function handleRecipe() {
+    setRecipeClicked();
+  }
+
   const [savedRecipes, setSavedRecipesApp] = useState(
     getRecipesFromLocalStorage()
   );
   console.log(savedRecipes);
-
-  useEffect(() => console.log("changed"), [savedRecipes]);
-
   function handleSetSavedRecipes(x) {
     setSavedRecipesApp(x);
   }
@@ -22,18 +25,19 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <LandingPage savedRecipes={savedRecipes} />
+            <LandingPage savedRecipes={savedRecipes} onRecipe={handleRecipe} />
           </Route>
 
           <Route exact path="/generator">
             <Generator onSave={handleSetSavedRecipes} />
           </Route>
 
-          <Route exact path="/recipe"></Route>
-
-          <Route exact path="/saved-recipe"></Route>
-
-          <Route exact path="/collection"></Route>
+          <Route exact path="/SingleRecipe/:name">
+            <SingleRecipe
+              savedRecipes={savedRecipes}
+              recipeClicked={recipeClicked}
+            />
+          </Route>
         </Switch>
       </div>
     </Router>
