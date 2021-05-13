@@ -8,9 +8,7 @@ export default function RecipeNavButton({
   action,
 }) {
   function handleRoute(event) {
-    console.log(label);
     event.preventDefault();
-    console.log(label);
     onClick(route, label);
   }
 

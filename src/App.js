@@ -15,7 +15,7 @@ function App() {
   const [savedRecipes, setSavedRecipesApp] = useState(
     getRecipesFromLocalStorage()
   );
-  console.log(savedRecipes);
+
   function handleSetSavedRecipes(x) {
     setSavedRecipesApp(x);
   }

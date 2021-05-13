@@ -1,14 +1,15 @@
-export default function SaveRecipeIngredients({ flours, totalRatioRyes }) {
+export default function SaveRecipeIngredients({ flours }) {
   const ingredients = flours.filter((flour) => flour.ratioValue > 0);
   const spelts = flours.filter((flour) => flour.name.includes("Spelt"));
-  // const ryes = flours.filter((flour) => flour.name.includes("Rye"));
+  const ryes = flours.filter((flour) => flour.name.includes("Rye"));
 
   const amountLiquids = ingredients.reduce(liquidReducer, { ratioLiquids: 0 });
 
   const amountYeast = ingredients.reduce(yeastReducer, { ratioYeast: 0 });
 
   const totalRatioSpelts = spelts.reduce(flourRatioReducer, { ratioValue: 0 });
-  // const totalRatioRyes = ryes.reduce(flourRatioReducer, { ratioValue: 0 });
+
+  const totalRatioRyes = ryes.reduce(flourRatioReducer, { ratioValue: 0 });
 
   const lemonJuiceAmount = ((6 * totalRatioSpelts.ratioValue) / 100) * 4;
 
@@ -27,7 +28,7 @@ export default function SaveRecipeIngredients({ flours, totalRatioRyes }) {
       ratioValue: a.ratioValue + b.ratioValue,
     };
   }
-  function lemonJuice() {
+  function renderLemonJuice() {
     if (totalRatioSpelts.ratioValue > 30) {
       return (
         <div className="SaveRecipe_Ingredients_Item">
@@ -37,7 +38,7 @@ export default function SaveRecipeIngredients({ flours, totalRatioRyes }) {
       );
     }
   }
-  function vinegar() {
+  function renderVinegar() {
     if (totalRatioRyes.ratioValue > 10) {
       return (
         <div className="SaveRecipe_Ingredients_Item">
@@ -47,7 +48,7 @@ export default function SaveRecipeIngredients({ flours, totalRatioRyes }) {
       );
     }
   }
-  function water() {
+  function renderWater() {
     if (totalRatioSpelts.ratioValue > 30 && totalRatioRyes.ratioValue > 10) {
       return (
         <div className="SaveRecipe_Ingredients_Item">
@@ -110,9 +111,9 @@ export default function SaveRecipeIngredients({ flours, totalRatioRyes }) {
   function ingredientsOthers() {
     return (
       <div>
-        {water()}
-        {lemonJuice()}
-        {vinegar()}
+        {renderWater()}
+        {renderLemonJuice()}
+        {renderVinegar()}
         {renderYeast()}
         {renderSalt()}
       </div>
