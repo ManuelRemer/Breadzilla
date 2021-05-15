@@ -1,0 +1,73 @@
+.SingleRecipe {
+  height: 100vh;
+  background-color: var(--color-green);
+  display: grid;
+  grid-template-rows: 100px min-content auto;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+.SingleRecipe_Headline {
+  grid-row: 1 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Titan One", cursive;
+  font-size: 42px;
+  color: var(--color-fonts);
+}
+.SingeRecipe_Text {
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+}
+.SingleRecipe_Text > div {
+  display: flex;
+  flex-direction: column;
+}
+.SingleRecipe_Text > div p:first-child {
+  margin: 10px 15%;
+}
+
+.SingleRecipe_Text > div > p > span {
+  font-weight: bold;
+}
+
+.SingleRecipe_Text_Info {
+  margin: 5px 0;
+  padding: 20px 15%;
+  max-height: 600px;
+  height: auto;
+  background-color: rgb(102, 133, 160);
+  animation: increase 1000ms ease;
+  position: relative;
+}
+.SingleRecipe_Text_Info__collapsed {
+  max-height: 0;
+  margin: 10px 0;
+  padding: 20px 15%;
+  animation: decrease 800ms ease-in-out;
+}
+
+@keyframes increase {
+  0% {
+    opacity: 0;
+    max-height: 0px;
+    margin: 0;
+    background-color: var(--color-green);
+  }
+  100% {
+    opacity: 1;
+    max-height: 600px;
+    margin: 10px 0;
+    background-color: rgb(102, 133, 160);
+  }
+}
+@keyframes decrease {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
