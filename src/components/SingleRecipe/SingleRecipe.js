@@ -2,8 +2,9 @@ import RecipeIngredients from "../RecipeIngredients";
 import ExpandButton from "../Buttons/NavButtons/ExpandButton";
 import "./SingleRecipe.css";
 import service from "../RecipeIngredients_Service";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useState } from "react";
+import NavButton from "../Buttons/NavButtons/NavButton";
 export default function SingleRecipe({ savedRecipes }) {
   const [expandInfoSF, setExpandInfoSF] = useState(false);
   const [expandInfoKR, setExpandInfoKR] = useState(false);
@@ -20,6 +21,11 @@ export default function SingleRecipe({ savedRecipes }) {
 
   function handleExpand(setState, state) {
     setState(!state);
+  }
+
+  let history = useHistory();
+  function handleRoute(x) {
+    history.push(`${x}`);
   }
 
   const steps = [
@@ -63,7 +69,7 @@ export default function SingleRecipe({ savedRecipes }) {
     },
     {
       content:
-        "Disolve the yeast in 20 g of of the water, the salt in the remaining water.",
+        "Disolve the yeast in 20 g of the water, the salt in the remaining water.",
       function: (step, index) => {
         return (
           <div key={index}>
@@ -79,7 +85,7 @@ export default function SingleRecipe({ savedRecipes }) {
       ryeOver10speltOver30: false,
     },
     {
-      content: "Disolve the yeast in 20 g of of the water.",
+      content: "Disolve the yeast in 20 g of the water.",
       function: (step, index) => {
         return (
           <div key={index}>
@@ -342,21 +348,6 @@ export default function SingleRecipe({ savedRecipes }) {
 
   function recipeText() {
     const myNewArray = buildArray().map((step, index) =>
-      //   step.expand ? (
-      //     <div key={index}>
-      //       <p>
-      //         <span>{index + 1}</span> {step.content}
-      //       </p>
-      //       <button>?</button>
-      //     </div>
-      //   ) : (
-      //     <div key={index}>
-      //       <p>
-      //         <span>{index + 1}</span> {step.content}
-      //       </p>
-      //     </div>
-      //   )
-      // );
       step.function(step.content, index)
     );
 
@@ -367,9 +358,17 @@ export default function SingleRecipe({ savedRecipes }) {
     <div className="SingleRecipe">
       <h2 className="SingleRecipe_Headline">{name}</h2>
       <div className="SingleRecipe_Ingredients">
-        <RecipeIngredients flours={ingredients} />
+        <RecipeIngredients flours={ingredients} label="" />
       </div>
       <div className="SingleRecipe_Text"> {recipeText()}</div>
+      <nav className="SingleRecipe_Nav">
+        <NavButton
+          label="home"
+          route="/"
+          action="route"
+          onClick={handleRoute}
+        />
+      </nav>
     </div>
   );
 }

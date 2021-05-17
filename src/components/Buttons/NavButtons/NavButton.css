@@ -60,7 +60,8 @@
   -moz-appearance: none;
   border: none;
   background-color: var(--color-green);
-  font-family: "Titan One", cursive;
+  /* font-family: "Titan One", cursive; */
+  font-weight: bold;
   color: var(--color-fonts);
 }
 

@@ -1,5 +1,6 @@
+import "./RecipeIngredients.css";
 import service from "./RecipeIngredients_Service";
-export default function SaveRecipeIngredients({ flours }) {
+export default function SaveRecipeIngredients({ flours, label }) {
   const {
     totalRatioRyes,
     totalRatioSpelts,
@@ -11,7 +12,7 @@ export default function SaveRecipeIngredients({ flours }) {
   function renderLemonJuice() {
     if (totalRatioSpelts.ratioValue > 30) {
       return (
-        <div className="SaveRecipe_Ingredients_Item">
+        <div className="RecipeIngredients_Item">
           <p>{amountLemonJuice} g</p>
           <p>Lemon Juice</p>
         </div>
@@ -21,7 +22,7 @@ export default function SaveRecipeIngredients({ flours }) {
   function renderVinegar() {
     if (totalRatioRyes.ratioValue > 10) {
       return (
-        <div className="SaveRecipe_Ingredients_Item">
+        <div className="RecipeIngredients_Item">
           <p>10 g</p>
           <p>Vinegar</p>
         </div>
@@ -31,7 +32,7 @@ export default function SaveRecipeIngredients({ flours }) {
   function renderWater() {
     if (totalRatioSpelts.ratioValue > 30 && totalRatioRyes.ratioValue > 10) {
       return (
-        <div className="SaveRecipe_Ingredients_Item">
+        <div className="RecipeIngredients_Item">
           <p>
             {Math.round(amountLiquids.ratioLiquids - amountLemonJuice) - 10} g
           </p>
@@ -40,21 +41,21 @@ export default function SaveRecipeIngredients({ flours }) {
       );
     } else if (totalRatioSpelts.ratioValue > 30) {
       return (
-        <div className="SaveRecipe_Ingredients_Item">
+        <div className="RecipeIngredients_Item">
           <p>{Math.round(amountLiquids.ratioLiquids - amountLemonJuice)} g</p>
           <p>Water</p>
         </div>
       );
     } else if (totalRatioRyes.ratioValue > 10) {
       return (
-        <div className="SaveRecipe_Ingredients_Item">
+        <div className="RecipeIngredients_Item">
           <p>{Math.round(amountLiquids.ratioLiquids - 10)} g</p>
           <p>Water</p>
         </div>
       );
     } else {
       return (
-        <div className="SaveRecipe_Ingredients_Item">
+        <div className="RecipeIngredients_Item">
           <p>{Math.round(amountLiquids.ratioLiquids)} g</p>
           <p>Water</p>
         </div>
@@ -64,7 +65,7 @@ export default function SaveRecipeIngredients({ flours }) {
 
   function renderYeast() {
     return (
-      <div className="SaveRecipe_Ingredients_Item">
+      <div className="RecipeIngredients_Item">
         <p>{amountYeast.ratioYeast.toFixed(1)} g</p>
         <p>Yeast</p>
       </div>
@@ -73,7 +74,7 @@ export default function SaveRecipeIngredients({ flours }) {
 
   function renderSalt() {
     return (
-      <div className="SaveRecipe_Ingredients_Item">
+      <div className="RecipeIngredients_Item">
         <p>{Math.round(((600 + amountLiquids.ratioLiquids) / 100) * 1.3)} g</p>
         <p>Salt</p>
       </div>
@@ -82,7 +83,7 @@ export default function SaveRecipeIngredients({ flours }) {
 
   function ingredientsFlours() {
     return ingredients.map((flour) => (
-      <div key={flour.name} className="SaveRecipe_Ingredients_Item">
+      <div key={flour.name} className="RecipeIngredients_Item">
         <p>{Math.round((600 / 100) * flour.ratioValue)} g</p>
         <p>{flour.name}</p>
       </div>
@@ -100,9 +101,9 @@ export default function SaveRecipeIngredients({ flours }) {
     );
   }
   return (
-    <section className="save-recipe-ingredients">
-      <h3>All you need is:</h3>
-      <div>
+    <section className="RecipeIngredients">
+      {label && <h3>{label}</h3>}
+      <div className="RecipeIngredients_List">
         {ingredientsFlours()}
         {ingredientsOthers()}
       </div>
