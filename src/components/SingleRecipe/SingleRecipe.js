@@ -5,19 +5,15 @@ import service from "../RecipeIngredients_Service";
 import { useParams, useHistory } from "react-router-dom";
 import { useState } from "react";
 import NavButton from "../Buttons/NavButtons/NavButton";
-export default function SingleRecipe({ savedRecipes }) {
+import DeleteButton from "../Buttons/NavButtons/DeleteButton";
+
+export default function SingleRecipe({ savedRecipes, onDelete }) {
   const [expandInfoSF, setExpandInfoSF] = useState(false);
   const [expandInfoKR, setExpandInfoKR] = useState(false);
   const { name } = useParams();
   const { recipe } = savedRecipes.find((recipe) => recipe.recipe.name === name);
   const { ingredients } = recipe;
-  const {
-    totalRatioRyes,
-    totalRatioSpelts,
-    // amountLemonJuice,
-    // amountLiquids,
-    // amountYeast,
-  } = service(ingredients);
+  const { totalRatioRyes, totalRatioSpelts } = service(ingredients);
 
   function handleExpand(setState, state) {
     setState(!state);
@@ -355,7 +351,7 @@ export default function SingleRecipe({ savedRecipes }) {
   }
 
   return (
-    <div className="SingleRecipe">
+    <div className="SingleRecipe" id="SingleRecipe">
       <h2 className="SingleRecipe_Headline">{name}</h2>
       <div className="SingleRecipe_Ingredients">
         <RecipeIngredients flours={ingredients} label="" />
@@ -367,6 +363,11 @@ export default function SingleRecipe({ savedRecipes }) {
           route="/"
           action="route"
           onClick={handleRoute}
+        />
+        <DeleteButton
+          name={name}
+          savedRecipes={savedRecipes}
+          onDelete={onDelete}
         />
       </nav>
     </div>

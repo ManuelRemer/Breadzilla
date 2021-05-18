@@ -1,0 +1,19 @@
+.DeleteButton {
+  border: solid brown;
+  height: 50px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10em;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  box-shadow: 0.5px 1px 8px -1px var(--color-fonts);
+  background-color: var(--color-fonts);
+  color: var(--color-sand);
+  font-weight: bold;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

@@ -22,7 +22,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App" id="App">
         <Switch>
           <Route exact path="/">
             <LandingPage savedRecipes={savedRecipes} onRecipe={handleRecipe} />
@@ -36,6 +36,7 @@ function App() {
             <SingleRecipe
               savedRecipes={savedRecipes}
               recipeClicked={recipeClicked}
+              onDelete={handleSetSavedRecipes}
             />
           </Route>
         </Switch>
