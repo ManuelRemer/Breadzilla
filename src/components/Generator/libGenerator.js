@@ -3,7 +3,6 @@ export function flourRatioReducer(a, b) {
     ratioValue: a.ratioValue + b.ratioValue,
   };
 }
-
 export function areArraysDeepEqual(arr1, arr2, key1) {
   const resultEvery = arr1.every((arr1Item, index) => {
     const arr2Item = arr2[index];

@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 
 export default function NavButton({ label, route, size, onClick, action }) {
   function handleRoute(event) {
-    console.log("click");
     event.preventDefault();
     onClick(route);
-    console.log(route);
   }
 
   function handleSave() {

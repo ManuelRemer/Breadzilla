@@ -2,7 +2,7 @@ import "./SaveRecipe.css";
 import SaveRecipeTextBox from "../../StaticTextBoxes/GeneratorPage/SaveRecipe/SaveRecipeTextBox";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
-import SaveRecipeIngredients from "./SaveRecipeIngredients/SaveRecipeIngredients";
+import RecipeIngredients from "../../RecipeIngredients/RecipeIngredients";
 import { useState } from "react";
 import {
   areArraysDeepEqual,
@@ -65,7 +65,7 @@ export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
         <p className="SaveRecipe_Note ">{note}</p>
       </div>
       <div>
-        <SaveRecipeIngredients
+        <RecipeIngredients
           flours={flours}
           save={ingredientsList}
           totalRatioRyes={totalRatioRyes}
