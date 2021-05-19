@@ -39,8 +39,9 @@ export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
     const anyNameEqual = savedRecipes.some(
       (savedRecipe) => savedRecipe.recipe.name === ingredientsList.name
     );
-
-    if (!anyNameEqual && !anyRecipeEqual) {
+    if (!ingredientsList.name) {
+      setNote("Please name your recipe");
+    } else if (!anyNameEqual && !anyRecipeEqual) {
       addRecipeToLocalStorage({ recipe: ingredientsList });
       setNote("");
       onSave(getRecipesFromLocalStorage);
