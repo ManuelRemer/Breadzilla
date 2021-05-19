@@ -4,6 +4,7 @@ import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
 import RecipeIngredients from "../../RecipeIngredients/RecipeIngredients";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   areArraysDeepEqual,
   getRecipesFromLocalStorage,
@@ -11,6 +12,7 @@ import {
 } from "../../Generator/libGenerator";
 
 export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
+  let history = useHistory();
   const [ingredientsList, setIngredientsList] = useState({
     name: "",
     ingredients: flours,
@@ -56,6 +58,8 @@ export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
         }
       }
     }
+
+    history.push(`recipes/${ingredientsList.name}`);
   }
 
   return (
