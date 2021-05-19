@@ -2,7 +2,7 @@ import "./SaveRecipe.css";
 import SaveRecipeTextBox from "../../StaticTextBoxes/GeneratorPage/SaveRecipe/SaveRecipeTextBox";
 import NavButton from "../../Buttons/NavButtons/NavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
-import RecipeIngredients from "../../RecipeIngredients";
+import RecipeIngredients from "../../RecipeIngredients/RecipeIngredients";
 import { useState } from "react";
 import {
   areArraysDeepEqual,

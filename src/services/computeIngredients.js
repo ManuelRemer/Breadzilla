@@ -1,6 +1,8 @@
-export default function service(flours) {
+export default function computeIngredients(flours) {
   const ingredients = flours.filter((flour) => flour.ratioValue > 0);
+
   const spelts = flours.filter((flour) => flour.name.includes("Spelt"));
+
   const ryes = flours.filter((flour) => flour.name.includes("Rye"));
 
   const amountLiquids = ingredients.reduce(liquidReducer, { ratioLiquids: 0 });

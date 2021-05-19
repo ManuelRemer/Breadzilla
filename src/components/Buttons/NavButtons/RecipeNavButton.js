@@ -1,19 +1,8 @@
 import "./NavButton.css";
 
-export default function RecipeNavButton({
-  label,
-  route,
-  size,
-  onClick,
-  action,
-}) {
-  function handleRoute(event) {
-    event.preventDefault();
-    onClick(route, label);
-  }
-
-  function handleSave(route, label) {
-    onClick(route, label);
+export default function RecipeNavButton({ label, route, size, onClick }) {
+  function handleRoute() {
+    onClick(label);
   }
 
   return (
@@ -22,10 +11,7 @@ export default function RecipeNavButton({
       className={["button", `button--${size}`, "routing-button"].join(" ")}
       route={route}
       label={label}
-      onClick={
-        action === "route" ? handleRoute : action === "save" ? handleSave : null
-      }
-      action={action}
+      onClick={handleRoute}
       size={size}
     >
       {label}

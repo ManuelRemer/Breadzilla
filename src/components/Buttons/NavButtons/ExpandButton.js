@@ -1,17 +1,7 @@
 import "./NavButton.css";
-export default function ExpandButton({
-  label,
-  className,
-  onExpand,
-  state,
-  setState,
-}) {
-  function handleClick() {
-    onExpand(setState, state);
-  }
-
+export default function ExpandButton({ onClick, className, label }) {
   return (
-    <button className={className} onClick={handleClick}>
+    <button className={className} onClick={onClick}>
       {label}
     </button>
   );

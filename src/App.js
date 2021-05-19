@@ -7,17 +7,27 @@ import { getRecipesFromLocalStorage } from "./components/Generator/libGenerator"
 import { useState } from "react";
 
 function App() {
-  const [recipeClicked, setRecipeClicked] = useState();
-  function handleRecipe() {
-    setRecipeClicked();
-  }
-
-  const [savedRecipes, setSavedRecipesApp] = useState(
+  const [savedRecipes, setSavedRecipes] = useState(
     getRecipesFromLocalStorage()
   );
 
+  function handleDeleteRecipe(name, history) {
+    if (window.confirm("Are you sure?")) {
+      history.push("/");
+
+      const indexToDelete = savedRecipes.findIndex(
+        (recipeToDelete) => recipeToDelete.recipe.name === name
+      );
+
+      savedRecipes.splice(indexToDelete);
+      localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+
+      setSavedRecipes(savedRecipes);
+    }
+  }
+
   function handleSetSavedRecipes(x) {
-    setSavedRecipesApp(x);
+    setSavedRecipes(x);
   }
 
   return (
@@ -25,18 +35,17 @@ function App() {
       <div className="App" id="App">
         <Switch>
           <Route exact path="/">
-            <LandingPage savedRecipes={savedRecipes} onRecipe={handleRecipe} />
+            <LandingPage savedRecipes={savedRecipes} />
           </Route>
 
           <Route exact path="/generator">
             <Generator onSave={handleSetSavedRecipes} />
           </Route>
 
-          <Route exact path="/SingleRecipe/:name">
+          <Route exact path="/recipes/:name">
             <SingleRecipe
               savedRecipes={savedRecipes}
-              recipeClicked={recipeClicked}
-              onDelete={handleSetSavedRecipes}
+              onDelete={handleDeleteRecipe}
             />
           </Route>
         </Switch>

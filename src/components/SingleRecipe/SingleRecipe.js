@@ -1,7 +1,7 @@
-import RecipeIngredients from "../RecipeIngredients";
+import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import ExpandButton from "../Buttons/NavButtons/ExpandButton";
 import "./SingleRecipe.css";
-import service from "../RecipeIngredients_Service";
+import computeIngredients from "../../services/computeIngredients";
 import { useParams, useHistory } from "react-router-dom";
 import { useState } from "react";
 import NavButton from "../Buttons/NavButtons/NavButton";
@@ -13,11 +13,7 @@ export default function SingleRecipe({ savedRecipes, onDelete }) {
   const { name } = useParams();
   const { recipe } = savedRecipes.find((recipe) => recipe.recipe.name === name);
   const { ingredients } = recipe;
-  const { totalRatioRyes, totalRatioSpelts } = service(ingredients);
-
-  function handleExpand(setState, state) {
-    setState(!state);
-  }
+  const { totalRatioRyes, totalRatioSpelts } = computeIngredients(ingredients);
 
   let history = useHistory();
   function handleRoute(x) {
@@ -191,10 +187,8 @@ export default function SingleRecipe({ savedRecipes, onDelete }) {
               <span>{index + 1}</span> In the meantime,{" "}
               <ExpandButton
                 label="stretch and fold"
-                onExpand={handleExpand}
                 className="SingleRecipe_Text_InfoButton"
-                state={expandInfoSF}
-                setState={setExpandInfoSF}
+                onClick={() => setExpandInfoSF(!expandInfoSF)}
               />{" "}
               it every 8 hours. If you have time or just want to, do this more
               often. It'll strengthen the doughs structure. But give it time to
@@ -217,10 +211,8 @@ export default function SingleRecipe({ savedRecipes, onDelete }) {
                 outer skin.
                 <ExpandButton
                   label="X"
-                  onExpand={handleExpand}
                   className="CloseButton"
-                  state={expandInfoSF}
-                  setState={setExpandInfoSF}
+                  onClick={() => setExpandInfoSF(!expandInfoSF)}
                 />
               </p>
             )}
@@ -244,10 +236,8 @@ export default function SingleRecipe({ savedRecipes, onDelete }) {
               should have doubled in volume. Now it's ready to get{" "}
               <ExpandButton
                 label="kneaded round"
-                onExpand={handleExpand}
                 className="SingleRecipe_Text_InfoButton"
-                state={expandInfoKR}
-                setState={setExpandInfoKR}
+                onClick={() => setExpandInfoKR(!expandInfoKR)}
               />
               .
             </p>
@@ -268,10 +258,8 @@ export default function SingleRecipe({ savedRecipes, onDelete }) {
                 outer skin.
                 <ExpandButton
                   label="X"
-                  onExpand={handleExpand}
                   className="CloseButton"
-                  state={expandInfoKR}
-                  setState={setExpandInfoKR}
+                  onClick={() => setExpandInfoKR(!expandInfoKR)}
                 />
               </p>
             )}

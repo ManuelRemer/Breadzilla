@@ -1,13 +1,14 @@
 .DeleteButton {
   border: solid brown;
-  height: 50px;
   margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10em;
-  width: 30px;
-  height: 30px;
+  padding: 0.5em;
+  width: 2em;
+  height: 2em;
+
   cursor: pointer;
 
   box-shadow: 0.5px 1px 8px -1px var(--color-fonts);

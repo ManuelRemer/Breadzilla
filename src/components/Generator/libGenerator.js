@@ -1,5 +1,3 @@
-const savedRecipes = getRecipesFromLocalStorage();
-
 export function flourRatioReducer(a, b) {
   return {
     ratioValue: a.ratioValue + b.ratioValue,
@@ -15,7 +13,7 @@ export function areArraysDeepEqual(arr1, arr2, key1) {
 }
 
 export function addRecipeToLocalStorage(recipe) {
-  // const savedRecipes = getRecipesFromLocalStorage();
+  const savedRecipes = getRecipesFromLocalStorage();
   savedRecipes.push(recipe);
   localStorage.setItem("recipes", JSON.stringify(savedRecipes));
 }
