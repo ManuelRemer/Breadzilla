@@ -5,17 +5,37 @@ import BrotHände from "../../images/BrotHände.jpg";
 import "./LandingPage.css";
 
 export default function LandingPage({ savedRecipes, onRecipe }) {
-  return (
-    <div className="LandingPage">
-      <div className="LandingPage_LandingSection">
-        <LandingSection />
-      </div>
+  function renderCollecten() {
+    if (savedRecipes.length !== 0)
+      return (
+        <div className="hhh">
+          <img
+            alt="different Breads"
+            src={CollectionImg}
+            className="ScrollImage"
+          />
+          <div className="LandingPage_Collection">
+            <Collection savedRecipes={savedRecipes} onRecipe={onRecipe} />
+          </div>
+          <img
+            alt="different Breads"
+            src={BrotHände}
+            className="ScrollImage2"
+          />
+        </div>
+      );
+  }
 
-      <img alt="different Breads" src={CollectionImg} className="ScrollImage" />
-      <div className="LandingPage_Collection">
-        <Collection savedRecipes={savedRecipes} onRecipe={onRecipe} />
+  return (
+    <div
+      className={
+        savedRecipes.length !== 0 ? "LandingPage" : "LandingPage__Short"
+      }
+    >
+      <div className="LandingPage_LandingSection">
+        <LandingSection savedRecipes={savedRecipes} />
       </div>
-      <img alt="different Breads" src={BrotHände} className="ScrollImage2" />
+      {renderCollecten()}
     </div>
   );
 }
