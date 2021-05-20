@@ -6,11 +6,12 @@ import NavButton from "../../Buttons/NavButtons/NavButton";
 import ScrollButton from "../../Buttons/NavButtons/NavButton";
 import { Link } from "react-scroll";
 import "./LandingSection.css";
-export default function LandingSection() {
+export default function LandingSection({ savedRecipes }) {
   let history = useHistory();
   function handleRoute(x) {
     history.push(`${x}`);
   }
+  console.log(savedRecipes);
 
   return (
     <div className="LandingSection">
@@ -29,9 +30,11 @@ export default function LandingSection() {
           onClick={handleRoute}
           action="route"
         />
-        <Link to="Collection" smooth={true}>
-          <ScrollButton label="Browse yor recipes" size="xlarge" />
-        </Link>
+        {savedRecipes.length !== 0 && (
+          <Link to="Collection" smooth={true}>
+            <ScrollButton label="Browse yor recipes" size="xlarge" />
+          </Link>
+        )}
       </div>
     </div>
   );

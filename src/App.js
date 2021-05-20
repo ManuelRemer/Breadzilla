@@ -19,7 +19,7 @@ function App() {
         (recipeToDelete) => recipeToDelete.recipe.name === name
       );
 
-      savedRecipes.splice(indexToDelete);
+      savedRecipes.splice(indexToDelete, 1);
       localStorage.setItem("recipes", JSON.stringify(savedRecipes));
 
       setSavedRecipes(savedRecipes);

@@ -70,7 +70,7 @@ export default function Generator({ onSave }) {
           ? {
               ...flour,
               status: !flour.status,
-              ratioValue: 100,
+
               ratioLiquids: 600 * flour.absorption,
               ratioYeast: 600 * flour.yeast,
             }
