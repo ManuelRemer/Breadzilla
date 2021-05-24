@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import FloursContext from "../../../../CustomHooks/FloursContext";
 import FlourRatioInput from "../FlourRatioInput/FlourRatioInput";
 import "./FlourRatioInputSet.css";
 
-export default function FlourRatioInputSet({ flours, onRatioInput }) {
-  const selectedFlours = flours.filter((flour) => flour.status === true);
+export default function FlourRatioInputSet({ onRatioInput }) {
+  const { selectedFlours } = useContext(FloursContext);
+
+  // const selectedFlours = flours.filter((flour) => flour.status === true);
   if (selectedFlours.length !== 0) {
     const selection = selectedFlours.map((flour) => (
       <div className="test">
@@ -17,8 +21,6 @@ export default function FlourRatioInputSet({ flours, onRatioInput }) {
               : "medium"
           }
           ratioValue={flour.ratioValue}
-          onRatioInput={onRatioInput}
-          selectedFlours={selectedFlours}
         />
       </div>
     ));

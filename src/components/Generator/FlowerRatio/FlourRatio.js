@@ -3,14 +3,14 @@ import { Link } from "react-scroll";
 import FlourRatioTextBox from "../../StaticTextBoxes/GeneratorPage/FlourRatio/FlourRatioTextBox";
 import ScrollButton from "../../Buttons/NavButtons/ScrollButton";
 import FlourRatioInputSet from "./FlourRatioInputSet/FlourRatioInputSet";
+import { useContext } from "react";
+import FloursContext from "../../../CustomHooks/FloursContext";
 
-export default function FlourRatio({
-  flours,
-  onRatioInput,
-  sumFlourRatio,
-  totalRatioRyes,
-}) {
-  const selectedFlours = flours.filter((flour) => flour.status === true);
+export default function FlourRatio({ onRatioInput }) {
+  const { sumFlourRatio, totalRatioRyes, flours, selectedFlours } = useContext(
+    FloursContext
+  );
+
   function renderToMuchRye() {
     if (totalRatioRyes.ratioValue > 20) {
       return (
@@ -32,15 +32,15 @@ export default function FlourRatio({
     }
   }
   function renderNot100() {
-    if (sumFlourRatio > 100) {
+    if (sumFlourRatio.ratioValue > 100) {
       return <p>You've added to much!</p>;
-    } else if (sumFlourRatio < 100) {
-      return <p>{100 - sumFlourRatio}% still missing</p>;
+    } else if (sumFlourRatio.ratioValue < 100) {
+      return <p>{100 - sumFlourRatio.ratioValue}% still missing</p>;
     }
   }
 
   function renderScrollButtonIngredients() {
-    if (sumFlourRatio === 100 && totalRatioRyes.ratioValue <= 20)
+    if (sumFlourRatio.ratioValue === 100 && totalRatioRyes.ratioValue <= 20)
       return (
         <Link
           className="generator-select-scroll"
@@ -59,11 +59,7 @@ export default function FlourRatio({
       </div>
 
       <div className="generator-ratio-inputset">
-        <FlourRatioInputSet
-          flours={flours}
-          onRatioInput={onRatioInput}
-          totalRatioRyes={totalRatioRyes}
-        />
+        <FlourRatioInputSet flours={flours} onRatioInput={onRatioInput} />
         {renderPurist()}
       </div>
       <div className="generator-ratio-next">

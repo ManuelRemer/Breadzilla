@@ -1,14 +1,13 @@
+import { useContext } from "react";
+import FloursContext from "../../../../CustomHooks/FloursContext";
 import "./FlourRatioInput.css";
-export default function FlourRatioInput({
-  label,
-  size,
-  ratioValue,
-  onRatioInput,
-}) {
-  function handleRatioInput(event) {
+export default function FlourRatioInput({ label, size, ratioValue }) {
+  const { handleRatioInput } = useContext(FloursContext);
+
+  function handleChange(event) {
     const value = Number(event.target.value);
 
-    onRatioInput(label, value);
+    handleRatioInput(label, value);
   }
 
   return (
@@ -24,7 +23,7 @@ export default function FlourRatioInput({
           ].join(" ")}
           text-align="right"
           value={ratioValue}
-          onChange={handleRatioInput}
+          onChange={handleChange}
         ></input>
         <span className={`flour-ratio-input--span-${size}`}>%</span>
       </div>

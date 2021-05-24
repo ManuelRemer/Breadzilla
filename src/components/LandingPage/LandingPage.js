@@ -4,18 +4,18 @@ import CollectionImg from "../../images/Collection.jpg";
 import BrotHände from "../../images/BrotHände.jpg";
 import "./LandingPage.css";
 
-export default function LandingPage({ savedRecipes, onRecipe }) {
-  function renderCollecten() {
+export default function LandingPage({ savedRecipes }) {
+  function renderCollection() {
     if (savedRecipes.length !== 0)
       return (
-        <div className="hhh">
+        <div className="LandingPage_Scrolled">
           <img
             alt="different Breads"
             src={CollectionImg}
             className="ScrollImage"
           />
           <div className="LandingPage_Collection">
-            <Collection savedRecipes={savedRecipes} onRecipe={onRecipe} />
+            <Collection savedRecipes={savedRecipes} />
           </div>
           <img
             alt="different Breads"
@@ -35,7 +35,7 @@ export default function LandingPage({ savedRecipes, onRecipe }) {
       <div className="LandingPage_LandingSection">
         <LandingSection savedRecipes={savedRecipes} />
       </div>
-      {renderCollecten()}
+      {renderCollection()}
     </div>
   );
 }
