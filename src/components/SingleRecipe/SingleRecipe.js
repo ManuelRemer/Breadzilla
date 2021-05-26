@@ -2,23 +2,20 @@ import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import ExpandButton from "../Buttons/NavButtons/ExpandButton";
 import "./SingleRecipe.css";
 import computeIngredients from "../../services/computeIngredients";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import NavButton from "../Buttons/NavButtons/NavButton";
 import DeleteButton from "../Buttons/NavButtons/DeleteButton";
+import DeleteRecipePopUp from "./DeleteRecipePopUp/DeleteRecipePopUP";
 
 export default function SingleRecipe({ savedRecipes, onDelete }) {
   const [expandInfoSF, setExpandInfoSF] = useState(false);
   const [expandInfoKR, setExpandInfoKR] = useState(false);
+  const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
   const { name } = useParams();
   const { recipe } = savedRecipes.find((recipe) => recipe.recipe.name === name);
   const { ingredients } = recipe;
   const { totalRatioRyes, totalRatioSpelts } = computeIngredients(ingredients);
-
-  let history = useHistory();
-  function handleRoute(x) {
-    history.push(`${x}`);
-  }
 
   const steps = [
     {
@@ -338,26 +335,31 @@ export default function SingleRecipe({ savedRecipes, onDelete }) {
     return myNewArray;
   }
 
+  function onClick() {
+    setIsDeleteButtonClicked(!isDeleteButtonClicked);
+  }
+
   return (
-    <div className="SingleRecipe" id="SingleRecipe">
-      <h2 className="SingleRecipe_Headline">{name}</h2>
-      <div className="SingleRecipe_Ingredients">
-        <RecipeIngredients flours={ingredients} label="" />
+    <div>
+      {isDeleteButtonClicked === true && (
+        <DeleteRecipePopUp onDelete={onDelete} name={name} onClick={onClick} />
+      )}
+      <div className={isDeleteButtonClicked ? "SingleRecipe_Blur" : ""}></div>
+      <div className="SingleRecipe" id="SingleRecipe">
+        <h2 className="SingleRecipe_Headline">{name}</h2>
+        <div className="SingleRecipe_Ingredients">
+          <RecipeIngredients flours={ingredients} label="" />
+        </div>
+        <div className="SingleRecipe_Text">{recipeText()}</div>
+        <nav className="SingleRecipe_Nav">
+          <NavButton label="home" route="/" action="route" />
+          <DeleteButton
+            name={name}
+            savedRecipes={savedRecipes}
+            onClick={onClick}
+          />
+        </nav>
       </div>
-      <div className="SingleRecipe_Text"> {recipeText()}</div>
-      <nav className="SingleRecipe_Nav">
-        <NavButton
-          label="home"
-          route="/"
-          action="route"
-          onClick={handleRoute}
-        />
-        <DeleteButton
-          name={name}
-          savedRecipes={savedRecipes}
-          onDelete={onDelete}
-        />
-      </nav>
     </div>
   );
 }

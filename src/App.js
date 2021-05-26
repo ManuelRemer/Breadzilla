@@ -18,18 +18,16 @@ function App() {
   }
 
   function handleDeleteRecipe(name, history) {
-    if (window.confirm("Are you sure?")) {
-      history.push("/");
+    history.push("/");
 
-      const indexToDelete = savedRecipes.findIndex(
-        (recipeToDelete) => recipeToDelete.recipe.name === name
-      );
-      const cloneSavedRecipes = [...savedRecipes];
-      cloneSavedRecipes.splice(indexToDelete, 1);
-      localStorage.setItem("recipes", JSON.stringify(cloneSavedRecipes));
+    const indexToDelete = savedRecipes.findIndex(
+      (recipeToDelete) => recipeToDelete.recipe.name === name
+    );
+    const cloneSavedRecipes = [...savedRecipes];
+    cloneSavedRecipes.splice(indexToDelete, 1);
+    localStorage.setItem("recipes", JSON.stringify(cloneSavedRecipes));
 
-      handleSavedRecipes(cloneSavedRecipes);
-    }
+    handleSavedRecipes(cloneSavedRecipes);
   }
 
   return (
@@ -42,7 +40,10 @@ function App() {
             </Route>
 
             <Route exact path="/generator">
-              <Generator onSaveUpdateSavedRecipes={handleSavedRecipes} />
+              <Generator
+                onSaveUpdateSavedRecipes={handleSavedRecipes}
+                savedRecipes={savedRecipes}
+              />
             </Route>
 
             <Route exact path="/recipes/:name">

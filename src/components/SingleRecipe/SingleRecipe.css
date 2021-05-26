@@ -1,15 +1,28 @@
 .SingleRecipe {
+  position: relative;
   height: 100vh;
   background-color: var(--color-green);
   display: grid;
   grid-template-rows: 100px min-content auto 100px;
   justify-content: center;
   overflow: scroll;
+  z-index: 0;
 }
+
+.SingleRecipe_Blur {
+  position: fixed;
+  background-color: black;
+  opacity: 0.6;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+}
+
 .SingleRecipe_Headline {
-  margin: 0 5%;
+  margin: 5%;
   grid-row: 1 / 2;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   font-family: "Titan One", cursive;

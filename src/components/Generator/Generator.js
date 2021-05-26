@@ -7,7 +7,7 @@ import "./Generator.css";
 import FloursContext from "../../CustomHooks/FloursContext";
 import { useContext } from "react";
 
-export default function Generator({ onSaveUpdateSavedRecipes }) {
+export default function Generator({ onSaveUpdateSavedRecipes, savedRecipes }) {
   const { sumFlourRatio, totalRatioRyes, flours } = useContext(FloursContext);
 
   return (
@@ -31,6 +31,7 @@ export default function Generator({ onSaveUpdateSavedRecipes }) {
             sumFlourRatio={sumFlourRatio.ratioValue}
             totalRatioRyes={totalRatioRyes}
             onSaveUpdateSavedRecipes={onSaveUpdateSavedRecipes}
+            savedRecipes={savedRecipes}
           />
         </div>
       )}

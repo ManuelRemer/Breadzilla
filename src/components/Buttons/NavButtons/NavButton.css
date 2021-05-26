@@ -48,7 +48,6 @@
 
 .select-button-selected {
   border: none;
-
   background-color: var(--color-fonts);
   color: var(--color-sand);
   font-weight: bold;

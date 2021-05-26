@@ -16,12 +16,14 @@ export default function LandingSection({ savedRecipes }) {
       />
       <div className="LandingSectin_Text">
         <Welcome />
-        <NavButton label="Bread Generator" size="xlarge" route="/Generator" />
-        {savedRecipes.length !== 0 && (
-          <Link to="Collection" smooth={true}>
-            <ScrollButton label="Browse yor recipes" size="xlarge" />
-          </Link>
-        )}
+        <nav className="LandingSectin_Nav">
+          <NavButton label="Bread Generator" size="xlarge" route="/Generator" />
+          {savedRecipes.length !== 0 && (
+            <Link to="Collection" smooth={true}>
+              <ScrollButton label="Browse yor recipes" size="xlarge" />
+            </Link>
+          )}
+        </nav>
       </div>
     </div>
   );

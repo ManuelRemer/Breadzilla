@@ -9,45 +9,31 @@ import SaveRecipesButtons from "./SaveRecipesButtons";
 import getRecipesFromLocalStorage from "../../../services/getRecipeFromLocalStorage";
 import addRecipeToLocalStorage from "../../../services/addRecipeToLocalStorage";
 import FloursContext from "../../../CustomHooks/FloursContext";
+import useNameRecipeInput from "../../../CustomHooks/useNameRecipeIput";
 
-export default function SaveRecipe({ onSaveUpdateSavedRecipes }) {
-  const { totalRatioRyes, flours, clearGenerator } = useContext(FloursContext);
+export default function SaveRecipe({ onSaveUpdateSavedRecipes, savedRecipes }) {
   let history = useHistory();
-
-  const [alreadySaved, setAlreadySaved] = useState(
-    getRecipesFromLocalStorage()
-  );
+  const { totalRatioRyes, flours, clearGenerator } = useContext(FloursContext);
+  const { ingredientsList, handleNameRecipeInput } = useNameRecipeInput();
   const [note, setNote] = useState("");
   const [saveButtonClicked, setSaveButtonClicked] = useState(false);
-  const [ingredientsList, setIngredientsList] = useState({
-    name: "",
-    ingredients: flours,
-  });
-  const anyNameEqual = alreadySaved.some(
+  const anyNameEqual = savedRecipes.some(
     (savedRecipe) => savedRecipe.recipe.name === ingredientsList.name
   );
 
-  function handleNameRecipeInput(name) {
-    const updateIngredientsList = {
-      ...ingredientsList,
-      name: name,
-    };
-    setIngredientsList(updateIngredientsList);
-  }
-
   function handleRoute() {
     history.push(
-      `recipes/${isAnyRecipeEqual(alreadySaved, ingredientsList).recipe.name}`
+      `recipes/${isAnyRecipeEqual(savedRecipes, ingredientsList).recipe.name}`
     );
     clearGenerator();
   }
 
   function handleSave() {
     setSaveButtonClicked(!saveButtonClicked);
-    if (isAnyRecipeEqual(alreadySaved, ingredientsList)) {
+    if (isAnyRecipeEqual(savedRecipes, ingredientsList)) {
       setNote(
         `This recipe already exists, look at ${
-          isAnyRecipeEqual(alreadySaved, ingredientsList).recipe.name
+          isAnyRecipeEqual(savedRecipes, ingredientsList).recipe.name
         }`
       );
     } else {
@@ -58,11 +44,11 @@ export default function SaveRecipe({ onSaveUpdateSavedRecipes }) {
           setNote("Please name your recipe");
         } else if (
           !anyNameEqual &&
-          !isAnyRecipeEqual(alreadySaved, ingredientsList)
+          !isAnyRecipeEqual(savedRecipes, ingredientsList)
         ) {
           addRecipeToLocalStorage({ recipe: ingredientsList });
           setNote("");
-          setAlreadySaved(getRecipesFromLocalStorage());
+          // setAlreadySaved(getRecipesFromLocalStorage());
           onSaveUpdateSavedRecipes(getRecipesFromLocalStorage());
           history.push(`recipes/${ingredientsList.name}`);
           clearGenerator();
@@ -92,7 +78,7 @@ export default function SaveRecipe({ onSaveUpdateSavedRecipes }) {
           ingredientsList={ingredientsList}
           handleRoute={handleRoute}
           saveButtonClicked={saveButtonClicked}
-          alreadySaved={alreadySaved}
+          alreadySaved={savedRecipes}
         />
       </div>
     </div>
