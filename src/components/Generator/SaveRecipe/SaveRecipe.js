@@ -1,50 +1,40 @@
 import "./SaveRecipe.css";
 import SaveRecipeTextBox from "../../StaticTextBoxes/GeneratorPage/SaveRecipe/SaveRecipeTextBox";
-import NavButton from "../../Buttons/NavButtons/NavButton";
-import RecipeNavButton from "../../Buttons/NavButtons/RecipeNavButton";
 import NameRecipeInput from "./NameRecipeInput/NameRecipeInput";
 import RecipeIngredients from "../../RecipeIngredients/RecipeIngredients";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import areArraysDeepEqual from "../../../services/areArraysDeepEqual";
+import isAnyRecipeEqual from "../../../services/isAnyRecipeEqual";
+import SaveRecipesButtons from "./SaveRecipesButtons";
 import getRecipesFromLocalStorage from "../../../services/getRecipeFromLocalStorage";
 import addRecipeToLocalStorage from "../../../services/addRecipeToLocalStorage";
+import FloursContext from "../../../CustomHooks/FloursContext";
+import useNameRecipeInput from "../../../CustomHooks/useNameRecipeIput";
 
-export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
+export default function SaveRecipe({ onSaveUpdateSavedRecipes, savedRecipes }) {
   let history = useHistory();
-  const [savedButtonClicked, setSavedButtonClicked] = useState(false);
-  const [ingredientsList, setIngredientsList] = useState({
-    name: "",
-    ingredients: flours,
-  });
+  const { totalRatioRyes, flours, clearGenerator } = useContext(FloursContext);
+  const { ingredientsList, handleNameRecipeInput } = useNameRecipeInput();
   const [note, setNote] = useState("");
-
-  function handleNameRecipeInput(name) {
-    const updateIngredientsList = {
-      ...ingredientsList,
-      name: name,
-    };
-    setIngredientsList(updateIngredientsList);
-  }
-  const savedRecipes = getRecipesFromLocalStorage();
-
-  const anyRecipeEqual = savedRecipes.find((savedRecipe) =>
-    areArraysDeepEqual(
-      savedRecipe.recipe.ingredients,
-      ingredientsList.ingredients,
-      "ratioValue"
-    )
+  const [saveButtonClicked, setSaveButtonClicked] = useState(false);
+  const anyNameEqual = savedRecipes.some(
+    (savedRecipe) => savedRecipe.recipe.name === ingredientsList.name
   );
 
-  function handleSave() {
-    setSavedButtonClicked(!savedButtonClicked);
-    const anyNameEqual = savedRecipes.some(
-      (savedRecipe) => savedRecipe.recipe.name === ingredientsList.name
+  function handleRoute() {
+    history.push(
+      `recipes/${isAnyRecipeEqual(savedRecipes, ingredientsList).recipe.name}`
     );
+    clearGenerator();
+  }
 
-    if (anyRecipeEqual) {
+  function handleSave() {
+    setSaveButtonClicked(!saveButtonClicked);
+    if (isAnyRecipeEqual(savedRecipes, ingredientsList)) {
       setNote(
-        `This recipe already exists, look at ${anyRecipeEqual.recipe.name}`
+        `This recipe already exists, look at ${
+          isAnyRecipeEqual(savedRecipes, ingredientsList).recipe.name
+        }`
       );
     } else {
       if (anyNameEqual !== false) {
@@ -52,39 +42,18 @@ export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
       } else {
         if (!ingredientsList.name) {
           setNote("Please name your recipe");
-        } else if (!anyNameEqual && !anyRecipeEqual) {
+        } else if (
+          !anyNameEqual &&
+          !isAnyRecipeEqual(savedRecipes, ingredientsList)
+        ) {
           addRecipeToLocalStorage({ recipe: ingredientsList });
           setNote("");
-          onSave(getRecipesFromLocalStorage);
+          // setAlreadySaved(getRecipesFromLocalStorage());
+          onSaveUpdateSavedRecipes(getRecipesFromLocalStorage());
           history.push(`recipes/${ingredientsList.name}`);
+          clearGenerator();
         }
       }
-    }
-  }
-
-  function handleRoute() {
-    history.push(`recipes/${anyRecipeEqual.recipe.name}`);
-  }
-
-  function renderButtons() {
-    if (anyRecipeEqual && savedButtonClicked) {
-      return (
-        <RecipeNavButton
-          size="xlarge"
-          label={anyRecipeEqual.recipe.name}
-          onClick={handleRoute}
-          animation="true"
-        />
-      );
-    } else {
-      return (
-        <NavButton
-          size="xlarge"
-          label="save"
-          onClick={handleSave}
-          action="save"
-        />
-      );
     }
   }
 
@@ -103,7 +72,15 @@ export default function SaveRecipe({ flours, totalRatioRyes, onSave }) {
         />
       </div>
 
-      <div className="save-recipe--buttons">{renderButtons()}</div>
+      <div className="save-recipe--buttons">
+        <SaveRecipesButtons
+          handleSave={handleSave}
+          ingredientsList={ingredientsList}
+          handleRoute={handleRoute}
+          saveButtonClicked={saveButtonClicked}
+          alreadySaved={savedRecipes}
+        />
+      </div>
     </div>
   );
 }

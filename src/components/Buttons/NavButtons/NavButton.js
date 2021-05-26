@@ -1,14 +1,12 @@
 import "./NavButton.css";
 import PropTypes from "prop-types";
-
-export default function NavButton({ label, route, size, onClick, action }) {
-  function handleRoute(event) {
+import { useHistory } from "react-router-dom";
+import handleRoute from "../../../services/handleRoute";
+export default function NavButton({ label, route, size }) {
+  let history = useHistory();
+  function handleClick(event) {
     event.preventDefault();
-    onClick(route);
-  }
-
-  function handleSave() {
-    onClick();
+    handleRoute(history, route);
   }
 
   return (
@@ -17,10 +15,7 @@ export default function NavButton({ label, route, size, onClick, action }) {
       className={["button", `button--${size}`, "routing-button"].join(" ")}
       route={route}
       label={label}
-      onClick={
-        action === "route" ? handleRoute : action === "save" ? handleSave : null
-      }
-      action={action}
+      onClick={handleClick}
     >
       {label}
     </button>
@@ -28,25 +23,12 @@ export default function NavButton({ label, route, size, onClick, action }) {
 }
 
 NavButton.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  // navigation: PropTypes.bool,
-  /**
-   * What background color to use
-   */
   backgroundColor: PropTypes.string,
-  /**
-   * How large should the button be?
-   */
+
   size: PropTypes.oneOf(["small", "large", "xlarge"]),
-  /**
-   * Button contents
-   */
+
   label: PropTypes.string.isRequired,
-  /**
-   * Optional click handler
-   */
+
   onClick: PropTypes.func,
 };
 

@@ -4,12 +4,12 @@ import ScrollButton from "../../Buttons/NavButtons/ScrollButton";
 import "./FlourSelection.css";
 import { Link } from "react-scroll";
 
-export default function FlourSelection({ onClick, flours }) {
+export default function FlourSelection() {
   return (
     <div className="generator-select">
       <FlourSelectionTextBox />
       <div className="generator-select-selection">
-        <FlourSelectionButtons onClick={onClick} flours={flours} />
+        <FlourSelectionButtons />
       </div>
 
       <Link className="generator-select-scroll" to="ratio" smooth={true}>

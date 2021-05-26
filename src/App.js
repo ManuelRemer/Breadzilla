@@ -5,52 +5,57 @@ import Generator from "./components/Generator/Generator";
 import SingleRecipe from "./components/SingleRecipe/SingleRecipe";
 import { getRecipesFromLocalStorage } from "./components/Generator/libGenerator";
 import { useState } from "react";
+import FloursContext from "./CustomHooks/FloursContext";
+import useFlours from "./CustomHooks/useFlours";
 
 function App() {
   const [savedRecipes, setSavedRecipes] = useState(
     getRecipesFromLocalStorage()
   );
 
-  function handleDeleteRecipe(name, history) {
-    if (window.confirm("Are you sure?")) {
-      history.push("/");
-
-      const indexToDelete = savedRecipes.findIndex(
-        (recipeToDelete) => recipeToDelete.recipe.name === name
-      );
-
-      savedRecipes.splice(indexToDelete, 1);
-      localStorage.setItem("recipes", JSON.stringify(savedRecipes));
-
-      setSavedRecipes(savedRecipes);
-    }
+  function handleSavedRecipes(newSavedRecipes) {
+    setSavedRecipes(newSavedRecipes);
   }
 
-  function handleSetSavedRecipes(x) {
-    setSavedRecipes(x);
+  function handleDeleteRecipe(name, history) {
+    history.push("/");
+
+    const indexToDelete = savedRecipes.findIndex(
+      (recipeToDelete) => recipeToDelete.recipe.name === name
+    );
+    const cloneSavedRecipes = [...savedRecipes];
+    cloneSavedRecipes.splice(indexToDelete, 1);
+    localStorage.setItem("recipes", JSON.stringify(cloneSavedRecipes));
+
+    handleSavedRecipes(cloneSavedRecipes);
   }
 
   return (
-    <Router>
-      <div className="App" id="App">
-        <Switch>
-          <Route exact path="/">
-            <LandingPage savedRecipes={savedRecipes} />
-          </Route>
+    <FloursContext.Provider value={useFlours()}>
+      <Router>
+        <div className="App" id="App">
+          <Switch>
+            <Route exact path="/">
+              <LandingPage savedRecipes={savedRecipes} />
+            </Route>
 
-          <Route exact path="/generator">
-            <Generator onSave={handleSetSavedRecipes} />
-          </Route>
+            <Route exact path="/generator">
+              <Generator
+                onSaveUpdateSavedRecipes={handleSavedRecipes}
+                savedRecipes={savedRecipes}
+              />
+            </Route>
 
-          <Route exact path="/recipes/:name">
-            <SingleRecipe
-              savedRecipes={savedRecipes}
-              onDelete={handleDeleteRecipe}
-            />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+            <Route exact path="/recipes/:name">
+              <SingleRecipe
+                savedRecipes={savedRecipes}
+                onDelete={handleDeleteRecipe}
+              />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </FloursContext.Provider>
   );
 }
 
